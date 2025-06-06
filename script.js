@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
     // Sticky Nav on Scroll
     const header = document.querySelector('.sticky');
     window.addEventListener('scroll', () => {
@@ -25,105 +28,190 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const colors = ['#00f5a0', '#00d9f5', '#ff4b8d', '#a768f5'];
     // Hero Canvas Animation
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let particlesArray;
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        let particles = [];
+        
 
         const mouse = {
-            x: null,
-            y: null,
-            radius: (canvas.height / 80) * (canvas.width / 80)
+            x: width / 2,
+            y: height / 2,
+            radius: 150
         };
 
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.x;
-            mouse.y = event.y;
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
         });
 
         class Particle {
-            constructor(x, y, directionX, directionY, size, color) {
-                this.x = x;
-                this.y = y;
-                this.directionX = directionX;
-                this.directionY = directionY;
-                this.size = size;
-                this.color = color;
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.size = Math.random() * 1.5 + 1;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
             }
-
             draw() {
-                ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                ctx.quadraticCurveTo(this.x + this.size / 2, this.y - this.size / 2, this.x, this.y - this.size);
-                ctx.quadraticCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x, this.y);
                 ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
                 ctx.fill();
             }
-
             update() {
-                if (this.x > canvas.width || this.x < 0) {
-                    this.directionX = -this.directionX;
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.directionY = -this.directionY;
-                }
-
                 let dx = mouse.x - this.x;
                 let dy = mouse.y - this.y;
                 let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius + this.size) {
-                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                        this.x += 10;
+                let forceDirectionX = dx / distance;
+                let forceDirectionY = dy / distance;
+                let maxDistance = mouse.radius;
+                let force = (maxDistance - distance) / maxDistance;
+                let directionX = forceDirectionX * force * this.density;
+                let directionY = forceDirectionY * force * this.density;
+
+                if (distance < mouse.radius) {
+                    this.x -= directionX;
+                    this.y -= directionY;
+                } else {
+                    if (this.x !== this.baseX) {
+                        let dx = this.x - this.baseX;
+                        this.x -= dx / 10;
                     }
-                    if (mouse.x > this.x && this.x > this.size * 10) {
-                        this.x -= 10;
-                    }
-                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                        this.y += 10;
-                    }
-                    if (mouse.y > this.y && this.y > this.size * 10) {
-                        this.y -= 10;
+                    if (this.y !== this.baseY) {
+                        let dy = this.y - this.baseY;
+                        this.y -= dy / 10;
                     }
                 }
-                this.x += this.directionX;
-                this.y += this.directionY;
-                this.draw();
             }
         }
 
         function init() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 9000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 5) + 1;
-                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 2) - 1;
-                let directionY = (Math.random() * 2) - 1;
-                const colors = ['#2aa198', '#cb4b16', '#d33682', '#6c71c4'];
-                let color = colors[Math.floor(Math.random() * colors.length)];
-
-                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            particles = [];
+            for (let i = 0; i < 150; i++) {
+                particles.push(new Particle());
             }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            connect();
+            requestAnimationFrame(animate);
         }
 
         function connect() {
             let opacityValue = 1;
-            for (let a = 0; a < particlesArray.length; a++) {
-                for (let b = a; b < particlesArray.length; b++) {
-                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-                        + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
+                        + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 7) * (height / 7)) {
                         opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(101, 123, 131, ${opacityValue})`;
-                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = `rgba(224, 224, 224, ${opacityValue})`;
+                        ctx.lineWidth = 0.5;
                         ctx.beginPath();
-                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            init();
+        });
+
+        init();
+        animate();
+    }
+
+    // Scroll-triggered animations
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => {
+        gsap.fromTo(el,
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+    });
+
+    // Philosophy Canvas Animation
+    const philosophyCanvas = document.getElementById('philosophy-canvas');
+    if (philosophyCanvas) {
+        const ctx = philosophyCanvas.getContext('2d');
+        let width = philosophyCanvas.width = philosophyCanvas.offsetWidth;
+        let height = philosophyCanvas.height = philosophyCanvas.offsetHeight;
+        let particles = [];
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 2 + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * 2 - 1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.size > 0.2) this.size -= 0.1;
+                if (this.x < 0 || this.x > width) this.speedX *= -1;
+                if (this.y < 0 || this.y > height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            const numberOfParticles = 30;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle(Math.random() * width, Math.random() * height));
+            }
+        }
+
+        function connect() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const distance = Math.sqrt(
+                        (particles[a].x - particles[b].x) ** 2 +
+                        (particles[a].y - particles[b].y) ** 2
+                    );
+                    if (distance < 100) {
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
                         ctx.stroke();
                     }
                 }
@@ -131,182 +219,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-            }
-            connect();
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = innerWidth;
-            canvas.height = innerHeight;
-            mouse.radius = (canvas.height / 80) * (canvas.width / 80);
-            init();
-        });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = undefined;
-            mouse.y = undefined;
-        });
-
-        init();
-        animate();
-    }
-
-    // SVG Tree Animation
-    const treeSVG = document.getElementById('tree-svg');
-    if (treeSVG) {
-        const svgNS = "http://www.w3.org/2000/svg";
-        const trunk = document.createElementNS(svgNS, 'path');
-        trunk.setAttribute('d', 'M50 100 V50');
-        trunk.setAttribute('stroke', 'var(--accent-color-1)');
-        trunk.setAttribute('stroke-width', '1');
-        trunk.setAttribute('fill', 'none');
-        treeSVG.appendChild(trunk);
-
-        function createBranch(svg, x1, y1, angle, length, depth) {
-            if (depth === 0) return;
-
-            const x2 = x1 + Math.cos(angle) * length;
-            const y2 = y1 - Math.sin(angle) * length;
-
-            const branch = document.createElementNS(svgNS, 'path');
-            branch.setAttribute('d', `M${x1} ${y1} L${x2} ${y2}`);
-            branch.setAttribute('stroke', 'var(--accent-color-1)');
-            branch.setAttribute('stroke-width', '1');
-            branch.setAttribute('fill', 'none');
-            branch.style.transition = `stroke-dashoffset ${depth * 0.5}s ease-out`;
-            svg.appendChild(branch);
-
-            const len = branch.getTotalLength();
-            branch.style.strokeDasharray = len;
-            branch.style.strokeDashoffset = len;
-
-            setTimeout(() => {
-                branch.style.strokeDashoffset = 0;
-                createBranch(svg, x2, y2, angle - 0.5, length * 0.8, depth - 1);
-                createBranch(svg, x2, y2, angle + 0.5, length * 0.8, depth - 1);
-            }, 100);
-        }
-        
-        const trunkPath = treeSVG.querySelector('path');
-        const len = trunkPath.getTotalLength();
-        trunkPath.style.strokeDasharray = len;
-        trunkPath.style.strokeDashoffset = len;
-
-        const treeObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                animateTree();
-                treeObserver.disconnect();
-            }
-        }, { threshold: 0.5 });
-
-        function animateTree() {
-            trunkPath.style.transition = 'stroke-dashoffset 2s ease-out';
-            trunkPath.style.strokeDashoffset = 0;
-
-            setTimeout(() => {
-                let branches = [];
-                function growBranches() {
-                    branches.forEach(branch => branch.remove());
-                    branches = [];
-                    
-                    function createBranch(svg, x1, y1, angle, length, depth) {
-                        if (depth === 0) return;
-
-                        const x2 = x1 + Math.cos(angle) * length;
-                        const y2 = y1 - Math.sin(angle) * length;
-
-                        const branch = document.createElementNS(svgNS, 'path');
-                        branch.setAttribute('d', `M${x1} ${y1} L${x2} ${y2}`);
-                        branch.setAttribute('stroke', 'var(--accent-color)');
-                        branch.setAttribute('stroke-width', '1');
-                        branch.setAttribute('fill', 'none');
-                        branch.style.transition = `stroke-dashoffset ${depth * 0.5}s ease-out`;
-                        svg.appendChild(branch);
-                        branches.push(branch);
-
-                        const len = branch.getTotalLength();
-                        branch.style.strokeDasharray = len;
-                        branch.style.strokeDashoffset = len;
-
-                        setTimeout(() => {
-                            branch.style.strokeDashoffset = 0;
-                            createBranch(svg, x2, y2, angle - (Math.random() * 0.5 + 0.25), length * 0.8, depth - 1);
-                            createBranch(svg, x2, y2, angle + (Math.random() * 0.5 + 0.25), length * 0.8, depth - 1);
-                            if (depth < 3) {
-                                createParticle(svg, x2, y2);
-                            }
-                        }, 100);
-                    }
-                    createBranch(treeSVG, 50, 50, Math.PI / 2 - 0.5, 20, 5);
-                    createBranch(treeSVG, 50, 50, Math.PI / 2 + 0.5, 20, 5);
-                }
-                
-                growBranches();
-                setInterval(growBranches, 5000);
-
-            }, 2200);
-        }
-
-        function createParticle(svg, x, y) {
-            const particle = document.createElementNS(svgNS, 'circle');
-            particle.setAttribute('cx', x);
-            particle.setAttribute('cy', y);
-            particle.setAttribute('r', 2);
-            const colors = ['#2aa198', '#cb4b16', '#d33682', '#6c71c4'];
-            particle.setAttribute('fill', colors[Math.floor(Math.random() * colors.length)]);
-            svg.appendChild(particle);
-
-            let anim = particle.animate([
-                { transform: `translate(0, 0)`, opacity: 1 },
-                { transform: `translate(${(Math.random() - 0.5) * 20}, 20px)`, opacity: 0 }
-            ], {
-                duration: 1000 + Math.random() * 1000,
-                easing: 'ease-out'
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
-            anim.onfinish = () => particle.remove();
+            connect();
+            requestAnimationFrame(animate);
         }
 
-        treeObserver.observe(treeSVG);
+        ScrollTrigger.create({
+            trigger: philosophyCanvas,
+            start: 'top 80%',
+            onEnter: () => {
+                init();
+                animate();
+            },
+            once: true
+        });
     }
 
-    // Service Card Branch Animations
-    const branchSVGs = document.querySelectorAll('.branch-svg');
-    branchSVGs.forEach(svg => {
-        const path = svg.querySelector('path');
-        const len = path.getTotalLength();
-        path.style.strokeDasharray = len;
-        path.style.strokeDashoffset = len;
-
-        const branchObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                setTimeout(() => {
-                    path.style.transition = 'stroke-dashoffset 2s ease-out';
-                    path.style.strokeDashoffset = 0;
-                }, 200);
-                branchObserver.disconnect();
-            }
-        }, { threshold: 0.5 });
-
-        branchObserver.observe(svg);
-    });
-
-    // Scroll Animations
-    const animatedElements = document.querySelectorAll('.feature, .service-card');
-    const animationObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+    // Service Card icon animations
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+        const icon = card.querySelector('.service-icon');
+        gsap.from(icon, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: -20,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out'
         });
-    }, { threshold: 0.1 });
-
-    animatedElements.forEach(el => {
-        animationObserver.observe(el);
     });
 });
