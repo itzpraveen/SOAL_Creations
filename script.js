@@ -1,15 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // GSAP Animations
-    gsap.registerPlugin(ScrollTrigger);
+// GSAP Animations
+gsap.registerPlugin(ScrollTrigger);
 
-    // Sticky Nav on Scroll
-    const header = document.querySelector('.sticky');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+// Sticky Nav on Scroll
+const header = document.querySelector('.sticky');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Hero Text Animations
+const heroHeading = document.querySelector('.hero-content h1');
+if (heroHeading) {
+    const text = heroHeading.textContent;
+    heroHeading.textContent = '';
+    
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.opacity = '0';
+        span.style.display = 'inline-block';
+        heroHeading.appendChild(span);
+        
+        gsap.to(span, {
+            opacity: 1,
+            duration: 0.8,
+            delay: i * 0.05,
+            ease: 'power3.out'
+        });
+    }
+}
+
+const heroParagraph = document.querySelector('.hero-content p');
+if (heroParagraph) {
+    gsap.fromTo(heroParagraph,
+        { y: 20, opacity: 0 },
+        {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            delay: 0.8,
+            ease: 'power3.out'
         }
+    );
+}
+
+    // Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+    });
+
+    // Close mobile nav on link click
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+        });
     });
 
     // Tabs
@@ -28,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const colors = ['#00f5a0', '#00d9f5', '#ff4b8d', '#a768f5'];
+    const colors = ['#f7d5a8', '#e9b7a3', '#a9c4a2', '#8fa88b', '#dda15e', '#bc6c25', '#606c38', '#283618'];
     // Hero Canvas Animation
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
@@ -101,13 +155,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function animate() {
-            ctx.clearRect(0, 0, width, height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-            }
-            connect();
-            requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, width, height);
+    for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+    }
+    connect();
+    
+    // Add floating effect to feature icons
+    const featureIcons = document.querySelectorAll('.feature-icon svg');
+    featureIcons.forEach((icon, index) => {
+        gsap.to(icon, {
+            y: Math.sin(Date.now() * 0.001 + index) * 5,
+            rotation: Math.sin(Date.now() * 0.001 + index) * 2,
+            duration: 2,
+            ease: 'none'
+        });
+    });
+    
+    requestAnimationFrame(animate);
         }
 
         function connect() {
@@ -118,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
                     if (distance < (width / 7) * (height / 7)) {
                         opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(224, 224, 224, ${opacityValue})`;
+                        ctx.strokeStyle = `rgba(46, 139, 87, ${opacityValue})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
@@ -158,101 +224,221 @@ document.addEventListener('DOMContentLoaded', () => {
         );
     });
 
-    // Philosophy Canvas Animation
-    const philosophyCanvas = document.getElementById('philosophy-canvas');
-    if (philosophyCanvas) {
-        const ctx = philosophyCanvas.getContext('2d');
-        let width = philosophyCanvas.width = philosophyCanvas.offsetWidth;
-        let height = philosophyCanvas.height = philosophyCanvas.offsetHeight;
-        let particles = [];
+    // Collaboration Animation
+    const animationContainer = document.getElementById('collaboration-animation');
+    if (animationContainer) {
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.style.overflow = 'visible';
+        animationContainer.appendChild(svg);
 
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 2 + 1;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+        const numNodes = 20;
+        const nodes = [];
+        const lines = [];
 
-                if (this.size > 0.2) this.size -= 0.1;
-                if (this.x < 0 || this.x > width) this.speedX *= -1;
-                if (this.y < 0 || this.y > height) this.speedY *= -1;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
+        for (let i = 0; i < numNodes; i++) {
+            const node = document.createElementNS(svgNS, "circle");
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            node.setAttribute('cx', `${x}%`);
+            node.setAttribute('cy', `${y}%`);
+            node.setAttribute('r', 4);
+            node.setAttribute('fill', colors[i % colors.length]);
+            svg.appendChild(node);
+            nodes.push({ element: node, x, y, vx: (Math.random() - 0.5) * 0.1, vy: (Math.random() - 0.5) * 0.1 });
         }
 
-        function init() {
-            particles = [];
-            const numberOfParticles = 30;
-            for (let i = 0; i < numberOfParticles; i++) {
-                particles.push(new Particle(Math.random() * width, Math.random() * height));
-            }
-        }
-
-        function connect() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    const distance = Math.sqrt(
-                        (particles[a].x - particles[b].x) ** 2 +
-                        (particles[a].y - particles[b].y) ** 2
-                    );
-                    if (distance < 100) {
-                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
+        for (let i = 0; i < numNodes; i++) {
+            for (let j = i + 1; j < numNodes; j++) {
+                const line = document.createElementNS(svgNS, "line");
+                line.setAttribute('x1', `${nodes[i].x}%`);
+                line.setAttribute('y1', `${nodes[i].y}%`);
+                line.setAttribute('x2', `${nodes[j].x}%`);
+                line.setAttribute('y2', `${nodes[j].y}%`);
+                line.setAttribute('stroke', 'rgba(0,0,0,0.1)');
+                line.setAttribute('stroke-width', 1);
+                svg.insertBefore(line, svg.firstChild);
+                lines.push({ element: line, node1: nodes[i], node2: nodes[j] });
             }
         }
 
         function animate() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+            nodes.forEach(node => {
+                node.x += node.vx;
+                node.y += node.vy;
+
+                if (node.x < 0 || node.x > 100) node.vx *= -1;
+                if (node.y < 0 || node.y > 100) node.vy *= -1;
+
+                node.element.setAttribute('cx', `${node.x}%`);
+                node.element.setAttribute('cy', `${node.y}%`);
             });
-            connect();
+
+            lines.forEach(line => {
+                line.element.setAttribute('x1', `${line.node1.x}%`);
+                line.element.setAttribute('y1', `${line.node1.y}%`);
+                line.element.setAttribute('x2', `${line.node2.x}%`);
+                line.element.setAttribute('y2', `${line.node2.y}%`);
+            });
+
             requestAnimationFrame(animate);
         }
 
         ScrollTrigger.create({
-            trigger: philosophyCanvas,
+            trigger: animationContainer,
             start: 'top 80%',
             onEnter: () => {
-                init();
                 animate();
             },
             once: true
         });
     }
 
-    // Service Card icon animations
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-        const icon = card.querySelector('.service-icon');
-        gsap.from(icon, {
-            scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                toggleActions: "play none none none"
-            },
-            y: -20,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
+// Continuous pulse animation for service cards
+const serviceCards = document.querySelectorAll('.service-card');
+serviceCards.forEach((card, index) => {
+    gsap.to(card, {
+        y: -5,
+        scale: 1.02,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+        delay: index * 0.2
     });
+});
+
+// Section header animations
+const sectionHeaders = document.querySelectorAll('h2');
+sectionHeaders.forEach(header => {
+    gsap.from(header, {
+        scrollTrigger: {
+            trigger: header,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: 'power3.out'
+    });
+});
+
+// Persona Card Animation
+const personaCards = document.querySelectorAll('.persona-card');
+personaCards.forEach((card, index) => {
+    gsap.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none none"
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        delay: index * 0.2,
+        ease: 'power3.out'
+    });
+});
+
+    // Why Choose Us Animation
+    const whyChooseUsAnimationContainer = document.getElementById('why-choose-us-animation');
+    if (whyChooseUsAnimationContainer) {
+        const pastelColors = ['#f7d5a8', '#e9b7a3', '#a9c4a2', '#8fa88b'];
+        const svgNS = "http://www.w3.org/2000/svg";
+        const svg = document.createElementNS(svgNS, "svg");
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '100%');
+        svg.style.overflow = 'visible';
+        whyChooseUsAnimationContainer.appendChild(svg);
+
+        const numBubbles = 50;
+        const bubbles = [];
+
+        for (let i = 0; i < numBubbles; i++) {
+            const bubble = document.createElementNS(svgNS, "circle");
+            const r = Math.random() * 20 + 5;
+            const x = Math.random() * 100;
+            const y = 110 + Math.random() * 20;
+            bubble.setAttribute('cx', `${x}%`);
+            bubble.setAttribute('cy', `${y}%`);
+            bubble.setAttribute('r', r);
+            bubble.setAttribute('fill', pastelColors[i % pastelColors.length]);
+            bubble.style.opacity = Math.random() * 0.5 + 0.2;
+            svg.appendChild(bubble);
+            bubbles.push({ element: bubble, x, y, r, vy: -(Math.random() * 0.1 + 0.05) });
+        }
+
+        function animate() {
+            bubbles.forEach(bubble => {
+                bubble.y += bubble.vy;
+                bubble.element.setAttribute('cy', `${bubble.y}%`);
+
+                if (bubble.y < -10) {
+                    bubble.y = 110;
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        ScrollTrigger.create({
+            trigger: whyChooseUsAnimationContainer,
+            start: 'top 80%',
+            onEnter: () => {
+                animate();
+            },
+            once: true
+        });
+    }
+
+    // Clarity Icon Animation
+    const clarityIcon = document.getElementById('clarity-icon');
+    if (clarityIcon) {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: clarityIcon,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        })
+        .from("#clarity-line", { scaleY: 0, transformOrigin: 'top' })
+        .from("#clarity-circle-2", { scale: 0, transformOrigin: 'center' })
+        .from("#clarity-path", { scaleX: 0, transformOrigin: 'left' })
+        .from("#clarity-circle-1", { scale: 0, transformOrigin: 'center' });
+    }
+
+    // Creativity Icon Animation
+    const creativityIcon = document.getElementById('creativity-icon');
+    if (creativityIcon) {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: creativityIcon,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        })
+        .from("#creativity-polygon", { y: -20, opacity: 0, duration: 0.5 })
+        .from("#creativity-polyline-2", { y: -20, opacity: 0, duration: 0.5 }, "-=0.2")
+        .from("#creativity-polyline-1", { y: -20, opacity: 0, duration: 0.5 }, "-=0.2");
+    }
+
+
+    // Partner Icon Animation
+    const partnerIcon = document.getElementById('partner-icon');
+    if (partnerIcon) {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: partnerIcon,
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+            }
+        })
+        .from("#partner-circle", { scale: 0, transformOrigin: 'center' })
+        .from("#partner-path-1", { scaleX: 0, transformOrigin: 'right' })
+        .from("#partner-path-3", { opacity: 0 })
+        .from("#partner-path-2", { opacity: 0 });
+    }
 });
