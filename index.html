@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header class="sticky">
@@ -15,140 +16,157 @@
                 <img src="assets/logo.svg" alt="SOAL Collaborations">
             </a>
             <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#approach">Our Approach</a></li>
-                <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="contact.html" id="contact-cta">Contact</a></li>
             </ul>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
         </nav>
     </header>
+    <div class="mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="work.html">Work</a>
+        <a href="contact.html">Contact</a>
+    </div>
 
     <main>
         <section id="hero" class="hero-section">
             <canvas id="hero-canvas"></canvas>
-            <div class="hero-content">
-                <h1>Innovate. Create. Collaborate.</h1>
-                <p>We are a creative agency that helps brands to grow.</p>
-                <a href="#services" class="cta-button">Explore Our Work</a>
-            </div>
+<div class="hero-content">
+    <h1>Creative Solutions for Visionary Entrepreneurs</h1>
+    <p>We bring fresh perspectives to solve business challenges through innovative digital and print experiences that connect with your audience and drive growth.</p>
+    <a href="work.html" class="cta-button">Explore Our Approach</a>
+</div>
         </section>
 
         <section id="features" class="features-section">
             <div class="container">
+                <h2>Our Creative Approach</h2>
                 <div class="feature reveal">
                     <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-pull-request" id="clarity-icon">
+                            <circle id="clarity-circle-1" cx="18" cy="18" r="3"></circle>
+                            <circle id="clarity-circle-2" cx="6" cy="6" r="3"></circle>
+                            <path id="clarity-path" d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                            <line id="clarity-line" x1="6" y1="9" x2="6" y2="21"></line>
+                        </svg>
                     </div>
-                    <h3>Data-Driven</h3>
-                    <p>Our strategies are backed by data to ensure optimal results.</p>
+<h3>Entrepreneur-First Thinking</h3>
+<p>We start with your vision, then craft unconventional solutions that challenge industry norms and create competitive advantages.</p>
                 </div>
                 <div class="feature reveal">
                     <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" id="creativity-icon">
+                            <polygon id="creativity-polygon" points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline id="creativity-polyline-1" points="2 17 12 22 22 17"></polyline>
+                            <polyline id="creativity-polyline-2" points="2 12 12 17 22 12"></polyline>
+                        </svg>
                     </div>
-                    <h3>Creative Excellence</h3>
-                    <p>We deliver high-quality, creative solutions that stand out.</p>
+<h3>Multi-Channel Impact</h3>
+<p>We design cohesive experiences across digital and print media that reinforce your message and maximize audience connection.</p>
                 </div>
                 <div class="feature reveal">
                     <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" id="partner-icon">
+                            <path id="partner-path-1" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle id="partner-circle" cx="9" cy="7" r="4"></circle>
+                            <path id="partner-path-2" d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path id="partner-path-3" d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
                     </div>
-                    <h3>Client Focused</h3>
-                    <p>Your success is our priority. We work closely with you to achieve your goals.</p>
+<h3>Problem-Solving Partnership</h3>
+<p>We're your thought partners in overcoming obstacles - bringing fresh eyes to stubborn challenges to unlock new opportunities.</p>
                 </div>
             </div>
         </section>
 
-        <section id="approach" class="approach-section">
+        <section id="who-we-help" class="who-we-help-section">
             <div class="container">
-                <h2>Our Approach</h2>
-                <div class="tabs">
-                    <div class="tab-nav">
-                        <button class="tab-link active" data-tab="tab-1">Discovery</button>
-                        <button class="tab-link" data-tab="tab-2">Strategy</button>
-                        <button class="tab-link" data-tab="tab-3">Creation</button>
-                        <button class="tab-link" data-tab="tab-4">Launch</button>
+                <h2>Who We Help</h2>
+                <div class="personas-grid">
+                    <div class="persona-card">
+                        <div class="persona-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rocket"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                        </div>
+<h3>The Visionary Founder</h3>
+<p>You're building something new and need creative solutions to stand out. We'll help translate your vision into compelling brand experiences across all touchpoints.</p>
                     </div>
-                    <div class="tab-content-container">
-                        <div id="tab-1" class="tab-content active">
-                            <h3>Discovery</h3>
-                            <p>We start by learning everything about your business and your goals. This phase is all about research, analysis, and understanding your brand's unique position in the market.</p>
+                    <div class="persona-card">
+                        <div class="persona-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                         </div>
-                        <div id="tab-2" class="tab-content">
-                            <h3>Strategy</h3>
-                            <p>We develop a comprehensive strategy to achieve your business objectives. This includes defining target audiences, setting KPIs, and creating a roadmap for success.</p>
+<h3>The Scaling Business</h3>
+<p>You've found product-market fit but need creative systems to scale. We design integrated solutions that work across digital and physical channels to accelerate growth.</p>
+                    </div>
+                    <div class="persona-card">
+                        <div class="persona-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                         </div>
-                        <div id="tab-3" class="tab-content">
-                            <h3>Creation</h3>
-                            <p>Our team of experts creates high-quality content and designs. From stunning visuals to compelling copy, we bring your brand's story to life.</p>
-                        </div>
-                        <div id="tab-4" class="tab-content">
-                            <h3>Launch</h3>
-                            <p>We launch your project and monitor its performance to ensure success. We analyze the data, gather feedback, and make adjustments as needed to optimize results.</p>
-                        </div>
+<h3>The Mission-Driven Organization</h3>
+<p>You're changing the world but struggle to cut through the noise. We create memorable campaigns that resonate emotionally and inspire action.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="philosophy" class="philosophy-section">
+        <section id="why-choose-us" class="why-choose-us-section">
             <div class="container">
-                <div class="philosophy-content">
-                    <h2>Our Philosophy</h2>
-                    <p>We believe in the power of collaboration and creativity to solve complex problems. Our philosophy is rooted in the idea that the best solutions come from a deep understanding of our clients' needs and a commitment to excellence.</p>
+                <h2>Why Choose Us?</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <h3>We're Your Partner in Growth</h3>
+                        <p>We're more than just a service provider; we're an extension of your team. We're invested in your success and committed to helping you achieve your goals.</p>
+                    </div>
+                    <div class="reason-card">
+                        <h3>We're Obsessed with Results</h3>
+                        <p>We're not just about creating beautiful things; we're about delivering tangible results. We use data to inform our decisions and measure our success.</p>
+                    </div>
+                    <div class="reason-card">
+                        <h3>We Believe in a Clear Process</h3>
+                        <p>We're not about smoke and mirrors; we're about transparency and collaboration. We'll work with you every step of the way to ensure we're on the right track.</p>
+                    </div>
                 </div>
-                <div class="philosophy-svg">
-                    <canvas id="philosophy-canvas"></canvas>
-                </div>
+                <div id="why-choose-us-animation"></div>
             </div>
         </section>
 
-        <section id="services" class="services-section">
+        <section id="process" class="process-section">
             <div class="container">
-                <h2>Our Services</h2>
-                <div class="services-grid">
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <svg class="branch-svg" viewBox="0 0 100 100"><path d="M50 100 V0"></path></svg>
-                        </div>
-                        <h3>Branding</h3>
-                        <p>We create strong brand identities that resonate with your target audience.</p>
+                <h2>Your Journey with Us</h2>
+                <div class="process-step">
+                    <div class="process-step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <svg class="branch-svg" viewBox="0 0 100 100"><path d="M50 100 V0"></path></svg>
-                        </div>
-                        <h3>Web Design</h3>
-                        <p>We design and develop beautiful and functional websites.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon">
-                            <svg class="branch-svg" viewBox="0 0 100 100"><path d="M50 100 V0"></path></svg>
-                        </div>
-                        <h3>Digital Marketing</h3>
-                        <p>We help you reach your target audience and grow your business.</p>
+                    <div class="process-step-content">
+<h3>Perspective Session (1 Week)</h3>
+<p>We immerse in your world through founder interviews and stakeholder workshops to identify unseen opportunities.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <h2>Connect With Us</h2>
-                <div class="social-links">
-                    <a href="#" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    </a>
-                    <a href="#" class="social-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    </a>
+                <div class="process-step">
+                    <div class="process-step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </div>
+                    <div class="process-step-content">
+<h3>Creative Solutioning (2-4 Weeks)</h3>
+<p>We develop integrated concepts across digital and print media, rapidly prototyping to validate effectiveness.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
+                    <div class="process-step-content">
+<h3>Impact Amplification (Ongoing)</h3>
+<p>We measure and refine campaign performance across channels to maximize reach and engagement.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -156,10 +174,17 @@
 
     <footer>
         <div class="container">
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Let's collaborate to build something amazing. Contact us today to get started.</p>
+            <a href="contact.html" class="cta-button">Get in Touch</a>
+            <div class="social-icons">
+                <a href="#" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/instagram.svg" alt="Instagram"></a>
+                <a href="#" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/linkedin.svg" alt="LinkedIn"></a>
+                <a href="#" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/whatsapp.svg" alt="Whatsapp"></a>
+            </div>
             <p>&copy; 2025 SOAL Collaborations. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
