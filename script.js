@@ -17,21 +17,37 @@ const heroHeading = document.querySelector('.hero-content h1');
 if (heroHeading) {
     const text = heroHeading.textContent;
     heroHeading.textContent = '';
-    
-    for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = text[i];
-        span.style.opacity = '0';
-        span.style.display = 'inline-block';
-        heroHeading.appendChild(span);
+    const words = text.split(' ');
+    let charCount = 0;
+
+    words.forEach((word, index) => {
+        const wordSpan = document.createElement('span');
+        wordSpan.style.display = 'inline-block'; // Keep word together
         
-        gsap.to(span, {
-            opacity: 1,
-            duration: 0.8,
-            delay: i * 0.05,
-            ease: 'power3.out'
-        });
-    }
+        for (let i = 0; i < word.length; i++) {
+            const charSpan = document.createElement('span');
+            charSpan.textContent = word[i];
+            charSpan.style.opacity = '0';
+            charSpan.style.display = 'inline-block';
+            wordSpan.appendChild(charSpan);
+
+            gsap.to(charSpan, {
+                opacity: 1,
+                duration: 0.8,
+                delay: (charCount + i) * 0.05,
+                ease: 'power3.out'
+            });
+        }
+        
+        heroHeading.appendChild(wordSpan);
+        charCount += word.length;
+
+        if (index < words.length - 1) {
+            const space = document.createTextNode(' ');
+            heroHeading.appendChild(space);
+            charCount++;
+        }
+    });
 }
 
 const heroParagraph = document.querySelector('.hero-content p');
@@ -48,13 +64,15 @@ if (heroParagraph) {
     );
 }
 
-    // Hamburger Menu
+    // Enhanced Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
+    const body = document.body;
 
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         mobileNav.classList.toggle('active');
+        body.classList.toggle('no-scroll');
     });
 
     // Close mobile nav on link click
@@ -63,6 +81,31 @@ if (heroParagraph) {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             mobileNav.classList.remove('active');
+            body.classList.remove('no-scroll');
+        });
+    });
+
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === '#') return;
+            
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (mobileNav.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    body.classList.remove('no-scroll');
+                }
+            }
         });
     });
 
@@ -155,26 +198,39 @@ if (heroParagraph) {
         }
 
         function animate() {
-    ctx.clearRect(0, 0, width, height);
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-    }
-    connect();
-    
-    // Add floating effect to feature icons
-    const featureIcons = document.querySelectorAll('.feature-icon svg');
-    featureIcons.forEach((icon, index) => {
-        gsap.to(icon, {
-            y: Math.sin(Date.now() * 0.001 + index) * 5,
-            rotation: Math.sin(Date.now() * 0.001 + index) * 2,
-            duration: 2,
-            ease: 'none'
-        });
-    });
-    
-    requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            connect();
+            
+            requestAnimationFrame(animate);
         }
+
+        // Optimized feature icon animations (runs separately from particle animation)
+        function animateFeatureIcons() {
+            const featureIcons = document.querySelectorAll('.feature-icon svg');
+            featureIcons.forEach((icon, index) => {
+                gsap.to(icon, {
+                    y: Math.sin(Date.now() * 0.001 + index) * 5,
+                    rotation: Math.sin(Date.now() * 0.001 + index) * 2,
+                    duration: 2,
+                    ease: 'none',
+                    onComplete: animateFeatureIcons
+                });
+            });
+        }
+        
+        // Start the feature icon animations only when in viewport
+        ScrollTrigger.create({
+            trigger: '.features-section',
+            start: 'top 80%',
+            onEnter: () => {
+                animateFeatureIcons();
+            },
+            once: true
+        });
 
         function connect() {
             let opacityValue = 1;
@@ -296,17 +352,23 @@ if (heroParagraph) {
         });
     }
 
-// Continuous pulse animation for service cards
+// Optimized pulse animation for service cards (only when in viewport)
 const serviceCards = document.querySelectorAll('.service-card');
 serviceCards.forEach((card, index) => {
-    gsap.to(card, {
-        y: -5,
-        scale: 1.02,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut',
-        delay: index * 0.2
+    ScrollTrigger.create({
+        trigger: card,
+        start: 'top 90%',
+        onEnter: () => {
+            gsap.to(card, {
+                y: -5,
+                scale: 1.02,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: 'power1.inOut',
+                delay: index * 0.2
+            });
+        }
     });
 });
 
