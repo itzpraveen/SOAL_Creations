@@ -11,9 +11,9 @@
 </head>
 <body>
     <header class="sticky">
-        <nav class="container">
-            <a href="#" class="logo">
-                <img src="assets/logo.svg" alt="SOAL Collaborations">
+        <nav class="container" role="navigation" aria-label="Main navigation">
+            <a href="#" class="logo" aria-label="SOAL Collaborations Home">
+                <img src="assets/logo.svg" alt="SOAL Collaborations Logo">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -22,14 +22,15 @@
                 <li><a href="work.html">Work</a></li>
                 <li><a href="contact.html" id="contact-cta">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
-            </div>
+            </button>
         </nav>
     </header>
-    <div class="mobile-nav">
+    <div class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <button class="mobile-close" aria-label="Close mobile menu"></button>
         <a href="index.html">Home</a>
         <a href="about.html">About Us</a>
         <a href="services.html">Services</a>
@@ -39,12 +40,12 @@
 
     <main>
         <section id="hero" class="hero-section">
-            <canvas id="hero-canvas"></canvas>
-<div class="hero-content">
-    <h1>Creative Solutions for Visionary Entrepreneurs</h1>
-    <p>We bring fresh perspectives to solve business challenges through innovative digital and print experiences that connect with your audience and drive growth.</p>
-    <a href="work.html" class="cta-button">Explore Our Approach</a>
-</div>
+            <canvas id="hero-canvas" aria-hidden="true"></canvas>
+            <div class="hero-content">
+                <h1>Creative Solutions for Visionary Entrepreneurs</h1>
+                <p>We bring fresh perspectives to solve business challenges through innovative digital and print experiences that connect with your audience and drive growth.</p>
+                <a href="work.html" class="cta-button" role="button">Explore Our Approach</a>
+            </div>
         </section>
 
         <section id="features" class="features-section">
