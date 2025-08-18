@@ -80,6 +80,10 @@ if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
 
       const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-1').trim() || '#f4c78e';
       const fillCol = getComputedStyle(document.documentElement).getPropertyValue('--text-dark').trim() || '#4a5a2d';
+      const accent2 = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-2').trim() || '#e29b8a';
+      const accent3 = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-3').trim() || '#98b886';
+      const accent4 = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-4').trim() || '#7d9478';
+      const svgNS = 'http://www.w3.org/2000/svg';
 
       // Collect drawable elements
       const elements = Array.from(svg.querySelectorAll('path, line, polyline, polygon'));
@@ -108,7 +112,62 @@ if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
         }
       });
       tl.to(elements, { fillOpacity: 1, duration: 0.6, stagger: 0.01 }, '>-0.1');
-      tl.to(elements, { strokeOpacity: 0.65, duration: 0.4 }, '>-0.3');
+      tl.to(elements, { strokeOpacity: 0.9, duration: 0.4 }, '>-0.3');
+
+      // Inject rotating gradient for attention-grabbing continuous color
+      let defs = svg.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS(svgNS, 'defs');
+        svg.insertBefore(defs, svg.firstChild);
+      }
+
+      // Compute center from viewBox
+      const vb = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal : { x: 0, y: 0, width: 1000, height: 400 };
+      const cx = vb.x + vb.width / 2;
+      const cy = vb.y + vb.height / 2;
+
+      // Create linear gradient used as rotating stroke
+      let grad = svg.querySelector('#logoStrokeGrad');
+      if (!grad) {
+        grad = document.createElementNS(svgNS, 'linearGradient');
+        grad.setAttribute('id', 'logoStrokeGrad');
+        grad.setAttribute('gradientUnits', 'userSpaceOnUse');
+        grad.setAttribute('x1', vb.x);
+        grad.setAttribute('y1', vb.y);
+        grad.setAttribute('x2', vb.x + vb.width);
+        grad.setAttribute('y2', vb.y);
+        defs.appendChild(grad);
+        const palette = [accent, accent2, accent3, accent4, accent];
+        palette.forEach((c, i) => {
+          const st = document.createElementNS(svgNS, 'stop');
+          st.setAttribute('offset', `${(i / (palette.length - 1)) * 100}%`);
+          st.setAttribute('stop-color', c);
+          grad.appendChild(st);
+        });
+      }
+
+      // After draw completes, swap stroke to gradient and start rotation + pulse
+      tl.add(() => {
+        elements.forEach(el => {
+          el.style.stroke = 'url(#logoStrokeGrad)';
+          el.style.strokeOpacity = '1';
+        });
+        // Rotate the gradient around the logo center
+        gsap.to(grad, {
+          attr: { gradientTransform: `rotate(360 ${cx} ${cy})` },
+          duration: 24,
+          ease: 'none',
+          repeat: -1
+        });
+        // Subtle stroke width pulse to draw attention
+        gsap.to(elements, {
+          strokeWidth:  isNaN(parseFloat(elements[0]?.style?.strokeWidth)) ? 2.4 : (parseFloat(elements[0].style.strokeWidth) + 0.8),
+          duration: 2.8,
+          yoyo: true,
+          repeat: -1,
+          ease: 'sine.inOut'
+        });
+      }, '>-0.1');
     } catch (e) {
       // Fallback: simply reveal the logo
       heroLogoObj.style.opacity = '1';
