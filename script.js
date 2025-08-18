@@ -187,24 +187,36 @@ if (heroParagraph && typeof gsap !== 'undefined') {
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
         let particles = [];
-        
+        const isMobile = width < 768 || !window.matchMedia('(pointer: fine)').matches;
 
         const mouse = {
             x: width / 2,
             y: height / 2,
-            radius: 150
+            radius: isMobile ? 180 : 150
         };
 
-        window.addEventListener('mousemove', e => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
+        let autoMotion = isMobile;
+        let t = 0;
+        let autoTimeout = null;
+
+        const onInteract = (x, y) => {
+            mouse.x = x; mouse.y = y;
+            autoMotion = false;
+            if (autoTimeout) clearTimeout(autoTimeout);
+            autoTimeout = setTimeout(() => { autoMotion = isMobile; }, 5000);
+        };
+
+        window.addEventListener('mousemove', e => onInteract(e.clientX, e.clientY));
+        window.addEventListener('touchstart', e => {
+            const touch = e.touches && e.touches[0];
+            if (touch) onInteract(touch.clientX, touch.clientY);
+        }, { passive: true });
 
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.size = Math.random() * 1.5 + 1;
+                this.size = isMobile ? (Math.random() * 1.6 + 2.0) : (Math.random() * 1.5 + 1);
                 this.baseX = this.x;
                 this.baseY = this.y;
                 this.density = (Math.random() * 30) + 1;
@@ -246,7 +258,7 @@ if (heroParagraph && typeof gsap !== 'undefined') {
 
         function init() {
             particles = [];
-            const count = width < 768 ? 60 : width < 1200 ? 100 : 150;
+            const count = width < 480 ? 70 : width < 768 ? 90 : width < 1200 ? 120 : 150;
             for (let i = 0; i < count; i++) {
                 particles.push(new Particle());
             }
@@ -254,12 +266,21 @@ if (heroParagraph && typeof gsap !== 'undefined') {
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
+
+            // Auto-attractor on mobile/touch for visible motion
+            if (autoMotion) {
+                t += 0.008;
+                const ampX = Math.min(width, height) * 0.35;
+                const ampY = Math.min(width, height) * 0.28;
+                mouse.x = width * 0.5 + Math.cos(t) * ampX;
+                mouse.y = height * 0.45 + Math.sin(t * 1.3) * ampY;
+            }
+
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
             }
-            // Lightweight connection drawing for larger screens only
-            if (width > 768) connect();
+            connect();
             
             requestAnimationFrame(animate);
         }
@@ -289,15 +310,20 @@ if (heroParagraph && typeof gsap !== 'undefined') {
         }
 
         function connect() {
-            let opacityValue = 1;
+            const base = Math.min(width, height);
+            const maxDist = (width < 768) ? base * 0.12 : base * 0.18; // px
+            const maxDistSq = maxDist * maxDist;
+            const alphaBase = (width < 768) ? 12000 : 20000;
+
             for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x))
-                        + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(46, 139, 87, ${opacityValue})`;
-                        ctx.lineWidth = 0.5;
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const distSq = dx * dx + dy * dy;
+                    if (distSq < maxDistSq) {
+                        const opacityValue = Math.max(0, 1 - (distSq / alphaBase));
+                        ctx.strokeStyle = `rgba(40, 54, 24, ${Math.min(opacityValue, 0.35)})`;
+                        ctx.lineWidth = (width < 768) ? 0.7 : 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
                         ctx.lineTo(particles[b].x, particles[b].y);
