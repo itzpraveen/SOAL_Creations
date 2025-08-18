@@ -194,6 +194,28 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     width: 100%;
     height: 100%;
     z-index: -1;
+    pointer-events: none;
+}
+
+/* Ambient gradient backdrop behind canvas for visual depth */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: -15%;
+    z-index: -2;
+    background:
+        radial-gradient(40% 40% at 20% 20%, rgba(244, 199, 142, 0.35), transparent 60%),
+        radial-gradient(45% 45% at 80% 30%, rgba(226, 155, 138, 0.30), transparent 60%),
+        radial-gradient(50% 50% at 50% 80%, rgba(152, 184, 134, 0.30), transparent 60%);
+    filter: blur(30px);
+    transform: translate3d(0,0,0);
+    animation: float-gradient 16s ease-in-out infinite;
+}
+
+@keyframes float-gradient {
+  0%   { transform: translate(-4%, -4%) scale(1); }
+  50%  { transform: translate(4%, 4%) scale(1.07); }
+  100% { transform: translate(-4%, -4%) scale(1); }
 }
 
 .hero-content h1 {
@@ -232,6 +254,8 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     box-shadow: 0 12px 35px rgba(46, 139, 87, 0.25);
     transform: translateZ(0); /* Enable GPU acceleration */
     will-change: transform;
+    position: relative;
+    overflow: hidden;
 }
 
 .cta-button:hover {
@@ -242,6 +266,23 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 .cta-button:active {
     transform: translateY(0) scale(0.98) translateZ(0);
     animation: none;
+}
+
+/* Subtle shimmer for CTA (mobile-friendly, non-hover) */
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 120%; height: 100%;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.45) 30%, transparent 60%);
+  transform: skewX(-20deg);
+  animation: cta-shine 5.2s ease-in-out infinite;
+}
+
+@keyframes cta-shine {
+  0%, 10% { left: -150%; }
+  35%     { left: 150%; }
+  100%    { left: 150%; }
 }
 
 @keyframes pulse {
