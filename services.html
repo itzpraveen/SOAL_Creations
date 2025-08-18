@@ -10,26 +10,28 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <header class="sticky">
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.svg" alt="SOAL Collaborations">
+        <nav class="container" role="navigation" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="SOAL Collaborations Home">
+                <img src="assets/logo.png" alt="SOAL Collaborations" decoding="async">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li><a href="services.html" aria-current="page">Services</a></li>
                 <li><a href="work.html">Work</a></li>
                 <li><a href="contact.html" id="contact-cta">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
-            </div>
+            </button>
         </nav>
     </header>
-    <div class="mobile-nav">
+    <div id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <button class="mobile-close" aria-label="Close mobile menu"></button>
         <a href="index.html">Home</a>
         <a href="about.html">About Us</a>
         <a href="services.html">Services</a>
@@ -37,7 +39,7 @@
         <a href="contact.html">Contact</a>
     </div>
 
-    <main>
+    <main id="main">
         <section id="services" class="services-section">
             <div class="container">
                 <h2>Our Services</h2>

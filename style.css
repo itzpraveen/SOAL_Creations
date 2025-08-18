@@ -101,15 +101,14 @@ nav {
     transform: translateY(-3px);
 }
 
-/* Enhanced transitions and animations */
-* {
-    transition: 
-        color 0.3s ease,
-        background-color 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
-        box-shadow 0.3s ease,
-        opacity 0.3s ease;
+/* Targeted transitions for interactive elements only (perf) */
+button, a, .service-card, .feature, .persona-card, .reason-card, .work-item, .cta-button {
+    transition: color 0.3s ease,
+               background-color 0.3s ease,
+               border-color 0.3s ease,
+               transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+               box-shadow 0.3s ease,
+               opacity 0.3s ease;
 }
 
 /* Focus states with animation */
@@ -134,6 +133,14 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     width: 100%;
 }
 
+/* Active link */
+.nav-links a[aria-current="page"] {
+    color: var(--accent-color-1);
+}
+.nav-links a[aria-current="page"]::after {
+    width: 100%;
+}
+
 #contact-cta {
     cursor: pointer;
     border: 1px solid var(--accent-color-1);
@@ -145,6 +152,28 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 #contact-cta:hover {
     background-color: var(--accent-color-1);
     color: var(--text-light);
+}
+
+/* Skip link */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    left: 16px;
+    top: 16px;
+    width: auto;
+    height: auto;
+    padding: 0.6rem 1rem;
+    background: #fff;
+    color: #000;
+    border-radius: 6px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    z-index: 2000;
 }
 
 /* Hero Section */
@@ -178,24 +207,14 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 }
 
 .hero-content p {
-    font-size: 1.5rem;
-    margin-bottom: 2.5rem;
-    animation: slide-up 1s cubic-bezier(0.19, 1, 0.22, 1) 0.2s forwards;
-    opacity: 0;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: 300;
-}
-
-.hero-content p {
     font-size: 1.3rem;
     margin-bottom: 2.5rem;
     animation: slide-up 1s cubic-bezier(0.19, 1, 0.22, 1) 0.2s forwards;
     opacity: 0;
-    max-width: 600px;
+    max-width: 680px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 300;
 }
 
 .cta-button {
@@ -243,6 +262,9 @@ section {
     border-bottom: 1px solid var(--border-color);
     position: relative;
 }
+
+/* Prevent scrolling when mobile nav open */
+body.no-scroll { overflow: hidden; }
 
 section:last-of-type {
     border-bottom: none;
@@ -968,6 +990,20 @@ footer {
     width: 30px;
     height: 30px;
     cursor: pointer;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Show focus only when using keyboard */
+:focus:not(:focus-visible) {
+    outline: none;
 }
 
 .mobile-close:before, 

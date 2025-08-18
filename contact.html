@@ -2,32 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.极污0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - SOAL Collaborations</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <header class="sticky">
-        <nav class="container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.svg" alt="SOAL Collaborations">
+        <nav class="container" role="navigation" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="SOAL Collaborations Home">
+                <img src="assets/logo.png" alt="SOAL Collaborations" decoding="async">
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="work.html">Work</a></li>
-                <li><a href="contact.html" id="contact-cta">Contact</a></li>
+                <li><a href="contact.html" id="contact-cta" aria-current="page">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
-            </div>
+            </button>
         </nav>
     </header>
-    <div class="mobile-nav">
+    <div id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <button class="mobile-close" aria-label="Close mobile menu"></button>
         <a href="index.html">Home</a>
         <a href="about.html">About Us</a>
         <a href="services.html">Services</a>
@@ -35,7 +37,7 @@
         <a href="contact.html">Contact</a>
     </div>
 
-    <main>
+    <main id="main">
         <section id="contact" class="contact-section">
             <div class="container">
                 <h2>Let's Create Something Together</h2>
@@ -45,22 +47,22 @@
                     <div class="contact-form">
                         <form id="contactForm">
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Your Name" required>
+                                <input type="text" name="name" placeholder="Your Name" aria-label="Your Name" required>
                                 <div class="validation-message"></div>
                             </div>
                             <div class="form-group">
-                                <input type="email" name="email" placeholder="Your Email" required>
+                                <input type="email" name="email" placeholder="Your Email" aria-label="Your Email" required>
                                 <div class="validation-message"></div>
                             </div>
                             <div class="form-group">
-                                <input type="tel" name="phone" placeholder="Phone (Optional)">
+                                <input type="tel" name="phone" placeholder="Phone (Optional)" aria-label="Phone (Optional)">
                             </div>
                             <div class="form-group">
-                                <input type="text" name="subject" placeholder="Subject" required>
+                                <input type="text" name="subject" placeholder="Subject" aria-label="Subject" required>
                                 <div class="validation-message"></div>
                             </div>
                             <div class="form-group">
-                                <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+                                <textarea name="message" placeholder="Tell us about your project..." aria-label="Message" required></textarea>
                                 <div class="validation-message"></div>
                             </div>
                             <button type="submit" class="cta-button">Send Message</button>
@@ -78,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="contact-detail">
-                                <svg xmlns="http://www.w3.org/2000/s极污" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                                 <div>
                                     <h4>Working Hours</h4>
                                     <p>Monday-Friday: 9AM - 6PM<br>Saturday: 10AM - 4PM<br>Sunday: Closed</p>
@@ -95,7 +97,7 @@
                         
                         <div class="map-placeholder">
                             <div class="map-overlay">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2极污16" y2="22"></line></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
                                 <p>Interactive Map<br><span>Location of our studio</span></p>
                             </div>
                         </div>
