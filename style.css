@@ -249,7 +249,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 
 .cta-button {
     background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
-    color: var(--text-dark);
+    color: var(--text-light);
     padding: 1.2rem 2.8rem;
     text-decoration: none;
     border-radius: 50px;
@@ -269,11 +269,17 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 .cta-button:hover {
     transform: translateY(-5px) scale(1.05) translateZ(0);
     box-shadow: 0 15px 40px rgba(249, 115, 22, 0.3);
+    color: var(--text-light);
 }
 
 .cta-button:active {
     transform: translateY(0) scale(0.98) translateZ(0);
     animation: none;
+}
+
+.cta-button:focus-visible {
+    outline: 3px solid rgba(249, 115, 22, 0.5);
+    outline-offset: 3px;
 }
 
 /* Subtle shimmer for CTA (mobile-friendly, non-hover) */
