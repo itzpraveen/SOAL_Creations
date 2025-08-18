@@ -432,7 +432,7 @@ if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
                     const distSq = dx * dx + dy * dy;
                     if (distSq < maxDistSq) {
                         const opacityValue = Math.max(0, 1 - (distSq / alphaBase));
-                        ctx.strokeStyle = `rgba(40, 54, 24, ${Math.min(opacityValue, 0.35)})`;
+                ctx.strokeStyle = `rgba(42, 42, 42, ${Math.min(opacityValue, 0.35)})`;
                         ctx.lineWidth = (width < 768) ? 0.7 : 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
