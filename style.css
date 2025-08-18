@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-    --primary-color: #fdf8e1; /* Lighter Cream */
-    --text-dark: #4a5a2d; /* Darker Olive Green for better contrast (7.5:1) */
-    --text-light: #fdf8e1; /* Lighter Cream */
-    --accent-color-1: #f4c78e; /* Brighter Peach for more vibrancy */
-    --accent-color-2: #e29b8a; /* Brighter Rose for better visibility */
-    --accent-color-3: #98b886; /* Brighter Green for consistency */
-    --accent-color-4: #7d9478; /* Darker Muted Green for depth */
-    --bg-light: #fef9e7; /* Slightly lighter Cream for cleaner look */
+    /* Sunrise Dream (Light) */
+    --primary-color: #FEF6F0; /* warm dawn */
+    --text-dark: #2A2A2A;     /* charcoal */
+    --text-light: #FFFFFF;    /* white for contrast on accents */
+    --accent-color-1: #F97316; /* tangerine */
+    --accent-color-2: #EF4444; /* coral red */
+    --accent-color-3: #8B5CF6; /* violet */
+    --accent-color-4: #06B6D4; /* bright aqua */
+    --bg-light: #FFF9F5;      /* lighter variant for cards */
     --border-color: rgba(0, 0, 0, 0.08);
-    --focus-outline: 2px solid #2d3a1a; /* Darker high contrast focus outline */
-    --gradient-1: linear-gradient(135deg, #f4c78e 0%, #e29b8a 100%);
-    --gradient-2: linear-gradient(135deg, #98b886 0%, #7d9478 100%);
+    --focus-outline: 2px solid #1f2937; /* high contrast focus */
+    --gradient-1: linear-gradient(135deg, var(--accent-color-1) 0%, var(--accent-color-2) 100%);
+    --gradient-2: linear-gradient(135deg, var(--accent-color-3) 0%, var(--accent-color-4) 100%);
 }
 
 html {
@@ -211,9 +212,9 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     inset: -15%;
     z-index: -2;
     background:
-        radial-gradient(40% 40% at 20% 20%, rgba(244, 199, 142, 0.35), transparent 60%),
-        radial-gradient(45% 45% at 80% 30%, rgba(226, 155, 138, 0.30), transparent 60%),
-        radial-gradient(50% 50% at 50% 80%, rgba(152, 184, 134, 0.30), transparent 60%);
+        radial-gradient(40% 40% at 20% 20%, rgba(249, 115, 22, 0.35), transparent 60%),
+        radial-gradient(45% 45% at 80% 30%, rgba(239, 68, 68, 0.30), transparent 60%),
+        radial-gradient(50% 50% at 50% 80%, rgba(139, 92, 246, 0.30), transparent 60%);
     filter: blur(30px);
     transform: translate3d(0,0,0);
     animation: float-gradient 16s ease-in-out infinite;
@@ -258,7 +259,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
         slide-up 1s cubic-bezier(0.19, 1, 0.22, 1) 0.4s forwards,
         pulse 2.5s infinite;
     opacity: 0;
-    box-shadow: 0 12px 35px rgba(46, 139, 87, 0.25);
+    box-shadow: 0 12px 35px rgba(249, 115, 22, 0.25);
     transform: translateZ(0); /* Enable GPU acceleration */
     will-change: transform;
     position: relative;
@@ -267,7 +268,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 
 .cta-button:hover {
     transform: translateY(-5px) scale(1.05) translateZ(0);
-    box-shadow: 0 15px 40px rgba(46, 139, 87, 0.3);
+    box-shadow: 0 15px 40px rgba(249, 115, 22, 0.3);
 }
 
 .cta-button:active {
@@ -729,8 +730,8 @@ h2::after {
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--accent-color-1);
-    box-shadow: 0 0 0 3px rgba(247, 213, 168, 0.3), 
-                0 5px 15px rgba(247, 213, 168, 0.1);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3), 
+                0 5px 15px rgba(249, 115, 22, 0.1);
     outline: none;
     transform: translateY(-2px);
 }
@@ -804,7 +805,7 @@ h2::after {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, rgba(253, 248, 225, 0.9), rgba(247, 213, 168, 0.2));
+    background: linear-gradient(45deg, rgba(254, 246, 240, 0.9), rgba(249, 115, 22, 0.2));
 }
 
 .map-overlay svg {
@@ -993,7 +994,7 @@ footer {
     width: 80%;
     max-width: 300px;
     height: 100vh;
-    background-color: rgba(253, 248, 225, 0.98);
+    background-color: rgba(254, 246, 240, 0.98);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: flex;
@@ -1011,7 +1012,7 @@ footer {
     font-size: 1.2rem;
     margin: 1rem 2rem;
     padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(122, 138, 93, 0.1);
+    border-bottom: 1px solid rgba(42, 42, 42, 0.1);
     transition: all 0.3s ease;
     width: calc(100% - 4rem);
 }
