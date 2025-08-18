@@ -253,6 +253,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     padding: 1.2rem 2.8rem;
     text-decoration: none;
     border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
     font-weight: 600;
     display: inline-block;
     animation: 
@@ -1173,8 +1174,9 @@ footer {
     }
 
     .cta-button {
-        padding: 0.9rem 2rem;
-        font-size: 0.9rem;
+        padding: 1rem 2.2rem;
+        font-size: 1rem;
+        border-width: 1px;
     }
 }
 
@@ -1217,5 +1219,9 @@ footer {
     .social-link svg {
         width: 32px;
         height: 32px;
+    }
+    .cta-button {
+        padding: 1rem 2.2rem;
+        font-size: 1rem;
     }
 }
