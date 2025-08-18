@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-    /* Sunrise Dream (Light) */
-    --primary-color: #FEF6F0; /* warm dawn */
-    --text-dark: #2A2A2A;     /* charcoal */
-    --text-light: #FFFFFF;    /* white for contrast on accents */
-    --accent-color-1: #F97316; /* tangerine */
-    --accent-color-2: #EF4444; /* coral red */
-    --accent-color-3: #8B5CF6; /* violet */
-    --accent-color-4: #06B6D4; /* bright aqua */
-    --bg-light: #FFF9F5;      /* lighter variant for cards */
+    /* Neutral creative theme: black primary; balanced multi-color accents (no orange) */
+    --primary-color: #FFFFFF;
+    --text-dark: #0F0F0F;
+    --text-light: #FFFFFF;
+    --accent-color-1: #6366F1; /* indigo */
+    --accent-color-2: #22D3EE; /* cyan */
+    --accent-color-3: #10B981; /* emerald */
+    --accent-color-4: #EC4899; /* pink */
+    --bg-light: #F6F7F9;
     --border-color: rgba(0, 0, 0, 0.08);
-    --focus-outline: 2px solid #1f2937; /* high contrast focus */
+    --focus-outline: 2px solid #111111;
     --gradient-1: linear-gradient(135deg, var(--accent-color-1) 0%, var(--accent-color-2) 100%);
     --gradient-2: linear-gradient(135deg, var(--accent-color-3) 0%, var(--accent-color-4) 100%);
 }
@@ -212,9 +212,9 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     inset: -15%;
     z-index: -2;
     background:
-        radial-gradient(40% 40% at 20% 20%, rgba(249, 115, 22, 0.35), transparent 60%),
-        radial-gradient(45% 45% at 80% 30%, rgba(239, 68, 68, 0.30), transparent 60%),
-        radial-gradient(50% 50% at 50% 80%, rgba(139, 92, 246, 0.30), transparent 60%);
+        radial-gradient(40% 40% at 20% 20%, rgba(99, 102, 241, 0.25), transparent 60%),
+        radial-gradient(45% 45% at 80% 30%, rgba(34, 211, 238, 0.22), transparent 60%),
+        radial-gradient(50% 50% at 50% 80%, rgba(236, 72, 153, 0.22), transparent 60%);
     filter: blur(30px);
     transform: translate3d(0,0,0);
     animation: float-gradient 16s ease-in-out infinite;
@@ -248,7 +248,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 }
 
 .cta-button {
-    background: linear-gradient(45deg, var(--accent-color-1), var(--accent-color-2));
+    background: linear-gradient(180deg, #1a1a1a, #000000);
     color: var(--text-light);
     padding: 1.2rem 2.8rem;
     text-decoration: none;
@@ -260,7 +260,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
         slide-up 1s cubic-bezier(0.19, 1, 0.22, 1) 0.4s forwards,
         pulse 2.5s infinite;
     opacity: 0;
-    box-shadow: 0 12px 35px rgba(249, 115, 22, 0.25);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
     transform: translateZ(0); /* Enable GPU acceleration */
     will-change: transform;
     position: relative;
@@ -269,7 +269,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 
 .cta-button:hover {
     transform: translateY(-5px) scale(1.05) translateZ(0);
-    box-shadow: 0 15px 40px rgba(249, 115, 22, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
     color: var(--text-light);
 }
 
@@ -279,7 +279,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 }
 
 .cta-button:focus-visible {
-    outline: 3px solid rgba(249, 115, 22, 0.5);
+    outline: 3px solid rgba(99, 102, 241, 0.5);
     outline-offset: 3px;
 }
 
@@ -737,8 +737,8 @@ h2::after {
 .form-group input:focus,
 .form-group textarea:focus {
     border-color: var(--accent-color-1);
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3), 
-                0 5px 15px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25), 
+                0 5px 15px rgba(99, 102, 241, 0.08);
     outline: none;
     transform: translateY(-2px);
 }
@@ -812,7 +812,7 @@ h2::after {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(45deg, rgba(254, 246, 240, 0.9), rgba(249, 115, 22, 0.2));
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.9), rgba(99, 102, 241, 0.2));
 }
 
 .map-overlay svg {
@@ -1001,7 +1001,7 @@ footer {
     width: 80%;
     max-width: 300px;
     height: 100vh;
-    background-color: rgba(254, 246, 240, 0.98);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     display: flex;
