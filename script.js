@@ -85,6 +85,35 @@ if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
       const accent4 = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-4').trim() || '#7d9478';
       const svgNS = 'http://www.w3.org/2000/svg';
 
+      // Prepare defs, viewBox center, and a rotating fill gradient (full-logo color change)
+      let defs = svg.querySelector('defs');
+      if (!defs) {
+        defs = document.createElementNS(svgNS, 'defs');
+        svg.insertBefore(defs, svg.firstChild);
+      }
+      const vb = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal : { x: 0, y: 0, width: 1000, height: 400 };
+      const cx = vb.x + vb.width / 2;
+      const cy = vb.y + vb.height / 2;
+
+      let fillGrad = svg.querySelector('#logoFillGrad');
+      if (!fillGrad) {
+        fillGrad = document.createElementNS(svgNS, 'linearGradient');
+        fillGrad.setAttribute('id', 'logoFillGrad');
+        fillGrad.setAttribute('gradientUnits', 'userSpaceOnUse');
+        fillGrad.setAttribute('x1', vb.x);
+        fillGrad.setAttribute('y1', vb.y);
+        fillGrad.setAttribute('x2', vb.x + vb.width);
+        fillGrad.setAttribute('y2', vb.y);
+        defs.appendChild(fillGrad);
+        const paletteFill = [accent, accent2, accent3, accent4, accent];
+        paletteFill.forEach((c, i) => {
+          const st = document.createElementNS(svgNS, 'stop');
+          st.setAttribute('offset', `${(i / (paletteFill.length - 1)) * 100}%`);
+          st.setAttribute('stop-color', c);
+          fillGrad.appendChild(st);
+        });
+      }
+
       // Collect drawable elements
       const elements = Array.from(svg.querySelectorAll('path, line, polyline, polygon'));
       // Prepare styles
@@ -95,7 +124,8 @@ if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
         el.style.transition = 'none';
         el.style.stroke = accent;
         el.style.strokeWidth = '2';
-        el.style.fill = fillCol;
+        // Use gradient for fill so the whole logo changes colours continuously
+        el.setAttribute('fill', `url(#logoFillGrad)`);
         el.style.fillOpacity = '0';
         if (len && isFinite(len)) {
           el.style.strokeDasharray = `${len}`;
@@ -113,18 +143,6 @@ if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
       });
       tl.to(elements, { fillOpacity: 1, duration: 0.6, stagger: 0.01 }, '>-0.1');
       tl.to(elements, { strokeOpacity: 0.9, duration: 0.4 }, '>-0.3');
-
-      // Inject rotating gradient for attention-grabbing continuous color
-      let defs = svg.querySelector('defs');
-      if (!defs) {
-        defs = document.createElementNS(svgNS, 'defs');
-        svg.insertBefore(defs, svg.firstChild);
-      }
-
-      // Compute center from viewBox
-      const vb = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal : { x: 0, y: 0, width: 1000, height: 400 };
-      const cx = vb.x + vb.width / 2;
-      const cy = vb.y + vb.height / 2;
 
       // Create linear gradient used as rotating stroke
       let grad = svg.querySelector('#logoStrokeGrad');
@@ -152,10 +170,16 @@ if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
           el.style.stroke = 'url(#logoStrokeGrad)';
           el.style.strokeOpacity = '1';
         });
-        // Rotate the gradient around the logo center
+        // Rotate the gradients around the logo center
         gsap.to(grad, {
           attr: { gradientTransform: `rotate(360 ${cx} ${cy})` },
           duration: 24,
+          ease: 'none',
+          repeat: -1
+        });
+        gsap.to(fillGrad, {
+          attr: { gradientTransform: `rotate(-360 ${cx} ${cy})` },
+          duration: 32,
           ease: 'none',
           repeat: -1
         });
