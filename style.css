@@ -187,6 +187,13 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     overflow: hidden;
 }
 
+.hero-logo {
+    display: block;
+    width: clamp(160px, 42vw, 360px);
+    height: auto;
+    margin: 0 auto 1rem;
+}
+
 #hero-canvas {
     position: absolute;
     top: 0;

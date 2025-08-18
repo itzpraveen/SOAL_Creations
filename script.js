@@ -68,6 +68,57 @@ if (heroParagraph && typeof gsap !== 'undefined') {
   }
 }
 
+// Logo path-draw animation (inline SVG via <object>)
+const heroLogoObj = document.getElementById('hero-logo');
+if (heroLogoObj && !prefersReduceMotion && typeof gsap !== 'undefined') {
+  heroLogoObj.addEventListener('load', () => {
+    try {
+      const svgDoc = heroLogoObj.contentDocument;
+      if (!svgDoc) return;
+      const svg = svgDoc.querySelector('svg');
+      if (!svg) return;
+
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-color-1').trim() || '#f4c78e';
+      const fillCol = getComputedStyle(document.documentElement).getPropertyValue('--text-dark').trim() || '#4a5a2d';
+
+      // Collect drawable elements
+      const elements = Array.from(svg.querySelectorAll('path, line, polyline, polygon'));
+      // Prepare styles
+      elements.forEach(el => {
+        // Some SVG elements might not support getTotalLength
+        let len = 0;
+        try { len = el.getTotalLength(); } catch (_) { len = 0; }
+        el.style.transition = 'none';
+        el.style.stroke = accent;
+        el.style.strokeWidth = '2';
+        el.style.fill = fillCol;
+        el.style.fillOpacity = '0';
+        if (len && isFinite(len)) {
+          el.style.strokeDasharray = `${len}`;
+          el.style.strokeDashoffset = `${len}`;
+        }
+      });
+
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+      tl.fromTo(svg, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.6 });
+      elements.forEach((el, i) => {
+        const len = parseFloat(el.style.strokeDasharray) || 0;
+        if (len) {
+          tl.to(el, { strokeDashoffset: 0, duration: 0.6 }, 0.2 + i * 0.05);
+        }
+      });
+      tl.to(elements, { fillOpacity: 1, duration: 0.6, stagger: 0.01 }, '>-0.1');
+      tl.to(elements, { strokeOpacity: 0.65, duration: 0.4 }, '>-0.3');
+    } catch (e) {
+      // Fallback: simply reveal the logo
+      heroLogoObj.style.opacity = '1';
+    }
+  });
+} else if (heroLogoObj) {
+  // Reduced motion: ensure visible
+  heroLogoObj.style.opacity = '1';
+}
+
     // Enhanced Hamburger Menu
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
