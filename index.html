@@ -1,201 +1,140 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOAL Collaborations - Creative Agency</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <a href="#main" class="skip-link">Skip to content</a>
-    <header class="sticky">
-        <nav class="container" role="navigation" aria-label="Main navigation">
-            <a href="#" class="logo" aria-label="SOAL Collaborations Home">
-                <img src="assets/logo.svg" alt="SOAL Collaborations Logo" decoding="async" fetchpriority="high">
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" aria-current="page">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="work.html">Work</a></li>
-                <li><a href="contact.html" id="contact-cta">Contact</a></li>
-            </ul>
-            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </button>
-        </nav>
-    </header>
-    <div id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
-        <button class="mobile-close" aria-label="Close mobile menu"></button>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Services</a>
-        <a href="work.html">Work</a>
-        <a href="contact.html">Contact</a>
-    </div>
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A strategic branding and communication studio building the future of identity."><meta name="theme-color" content="#080808"><!-- Open Graph --><meta property="og:title" content="Branding &#38; Communication | SOAL Creations"><meta property="og:description" content="A strategic branding and communication studio building the future of identity."><meta property="og:type" content="website"><title>Branding &amp; Communication | SOAL Creations</title><!-- Preload critical assets --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- GSAP for animations --><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script><link rel="stylesheet" href="/_astro/about.BM1BscOe.css"><script type="module" src="/_astro/hoisted.D5XbkR8p.js"></script></head> <body> <!-- Skip to main content for accessibility --> <a href="#main-content" class="skip-link">Skip to main content</a> <nav class="nav" id="main-nav" data-astro-cid-pux6a34n> <a href="/" class="logo-link" aria-label="SOAL Creations Home" data-astro-cid-pux6a34n> <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="45 75 1090 300" aria-hidden="true" data-astro-cid-pux6a34n> <g class="logo-main" fill="currentColor" data-astro-cid-pux6a34n> <path d="M168.1,367.08c-16.3,0-31.9-1.71-46.77-5.13-14.89-3.42-28.04-8.76-39.49-16.01-11.44-7.25-20.46-16.28-27.03-27.09-6.59-10.8-9.87-23.6-9.87-38.38,0-1.64.07-3.28.21-4.92.14-1.65.21-2.87.21-3.7h56.22c0,.55-.07,1.58-.21,3.08-.15,1.5-.21,2.81-.21,3.9,0,9.03,2.71,16.76,8.16,23.19,5.43,6.43,13.3,11.36,23.6,14.78,10.3,3.42,22.45,5.13,36.48,5.13,9.44,0,10.53-.55,17.82-1.65,7.3-1.09,13.58-2.66,18.88-4.72,5.29-2.05,9.66-4.51,13.09-7.39,3.43-2.87,5.93-6.09,7.5-9.65,1.57-3.55,2.37-7.39,2.37-11.49,0-7.93-2.58-14.5-7.73-19.7-5.15-5.19-12.09-9.58-20.81-13.13-8.73-3.55-18.6-6.77-29.61-9.64-11.02-2.87-22.32-5.81-33.9-8.82-11.59-3.01-22.89-6.63-33.9-10.88-11.02-4.24-20.89-9.37-29.61-15.39-8.73-6.01-15.67-13.61-20.82-22.78-5.15-9.17-7.72-20.17-7.72-33.04s2.93-24.63,8.8-34.48c5.86-9.85,14.16-17.99,24.89-24.42,10.73-6.43,23.24-11.22,37.55-14.37,14.31-3.14,29.89-4.72,46.78-4.72,15.73,0,30.54,1.58,44.42,4.72,13.87,3.14,26.1,8.07,36.69,14.77,10.59,6.71,18.88,15.19,24.89,25.45,6.01,10.27,9.01,22.51,9.01,36.73v4.93h-55.36v-4.11c0-7.93-2.51-14.63-7.51-20.11-5.01-5.47-12.02-9.71-21.03-12.72-9.01-3.01-19.52-4.51-31.54-4.51-12.87,0-23.89,1.17-33.05,3.48-9.16,2.33-16.17,5.75-21.03,10.27-4.87,4.51-7.29,10.06-7.29,16.62s2.57,12.58,7.72,17.23c5.15,4.66,12.08,8.62,20.81,11.91,8.72,3.28,18.59,6.3,29.61,9.03,11.01,2.74,22.32,5.68,33.9,8.83,11.59,3.14,22.89,6.77,33.9,10.88,11.01,4.1,20.88,9.23,29.61,15.39,8.72,6.15,15.67,13.75,20.82,22.78,5.15,9.03,7.72,19.85,7.72,32.43,0,21.07-5.36,38.04-16.09,50.9-10.73,12.86-25.47,22.16-44.21,27.91-18.74,5.75-32.84,8.62-56.88,8.62Z" data-astro-cid-pux6a34n></path> <path d="M454.98,367.08c-30.62,0-57.08-5.27-79.39-15.8-22.32-10.53-39.42-26.61-51.28-48.22-11.87-21.62-17.81-48.84-17.81-81.68s5.93-60.4,17.81-81.89c11.87-21.48,28.97-37.48,51.28-48.02,22.31-10.53,48.78-15.8,79.39-15.8s48.88,5.27,71.05,15.8c22.17,10.54,39.2,26.54,51.07,48.02,11.87,21.49,17.81,48.78,17.81,81.89s-5.94,60.06-17.81,81.68c-11.87,21.62-28.9,37.69-51.07,48.22-22.18,10.54-40.15,15.8-71.05,15.8ZM454.98,321.93c14.87,0,19.41-2.05,30.72-6.16,11.3-4.11,20.81-10.19,28.53-18.26,7.73-8.07,13.59-18.06,17.6-29.96,4-11.9,6.01-25.65,6.01-41.25v-9.03c0-15.86-2-29.82-6.01-41.86-4.01-12.04-9.87-22.09-17.6-30.17-7.72-8.07-17.24-14.16-28.53-18.26-11.31-4.11-15.84-6.15-30.72-6.15s-27.97,2.05-39.27,6.15c-11.31,4.11-20.82,10.2-28.54,18.26-7.72,8.08-13.52,18.13-17.38,30.17-3.86,12.04-5.79,26-5.79,41.86v9.03c0,15.6,1.93,29.35,5.79,41.25,3.86,11.91,9.66,21.89,17.38,29.96s17.23,14.16,28.54,18.26c11.3,4.11,24.39,6.16,39.27,6.16Z" data-astro-cid-pux6a34n></path> <path d="M910.33,362.15V80.6h55.79v229.87h159.75v51.68h-215.54Z" data-astro-cid-pux6a34n></path> <path d="M887.88,80.6h-60.51l-23.6,59.92h-134.75l-23.6-59.92h-57.51l114.58,281.56h70.38l115.01-281.56ZM689,191.84h94.34l-27.21,70.16c-1.15,2.73-2.51,6.22-4.07,10.46-1.58,4.24-3.22,8.89-4.94,13.95-1.72,5.06-3.43,10.19-5.15,15.4-1.72,5.19-3.29,9.85-4.73,13.95h-2.15c-1.72-5.47-3.79-11.77-6.22-18.88-2.43-7.12-4.79-13.82-7.08-20.11-2.29-6.3-4.15-11.22-5.58-14.77l-27.21-70.16Z" data-astro-cid-pux6a34n></path> </g> </svg> </a> <ul class="nav-links" id="nav-links" data-astro-cid-pux6a34n> <li data-astro-cid-pux6a34n> <a href="/" class="active" data-astro-cid-pux6a34n> Index </a> </li><li data-astro-cid-pux6a34n> <a href="/work" data-astro-cid-pux6a34n> Selected Work </a> </li><li data-astro-cid-pux6a34n> <a href="/services" data-astro-cid-pux6a34n> Expertise </a> </li><li data-astro-cid-pux6a34n> <a href="/about" data-astro-cid-pux6a34n> Studio </a> </li><li data-astro-cid-pux6a34n> <a href="/contact" data-astro-cid-pux6a34n> Contact </a> </li> </ul> <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false" data-astro-cid-pux6a34n> <span class="menu-icon" data-astro-cid-pux6a34n> <span data-astro-cid-pux6a34n></span> <span data-astro-cid-pux6a34n></span> </span> <span class="menu-text" data-astro-cid-pux6a34n>Menu</span> </button> </nav> <!-- Mobile Menu Overlay --> <div class="mobile-menu" id="mobile-menu" aria-hidden="true" data-astro-cid-pux6a34n> <ul class="mobile-nav-links" data-astro-cid-pux6a34n> <li style="--delay: 0s" data-astro-cid-pux6a34n> <a href="/" class="active" data-astro-cid-pux6a34n> Index </a> </li><li style="--delay: 0.1s" data-astro-cid-pux6a34n> <a href="/work" data-astro-cid-pux6a34n> Selected Work </a> </li><li style="--delay: 0.2s" data-astro-cid-pux6a34n> <a href="/services" data-astro-cid-pux6a34n> Expertise </a> </li><li style="--delay: 0.30000000000000004s" data-astro-cid-pux6a34n> <a href="/about" data-astro-cid-pux6a34n> Studio </a> </li><li style="--delay: 0.4s" data-astro-cid-pux6a34n> <a href="/contact" data-astro-cid-pux6a34n> Contact </a> </li> </ul> <div class="mobile-menu-footer" data-astro-cid-pux6a34n> <a href="mailto:hello@soalcreations.com" data-astro-cid-pux6a34n>hello@soalcreations.com</a> <div class="mobile-socials" data-astro-cid-pux6a34n> <a href="#" data-astro-cid-pux6a34n>Instagram</a> <a href="#" data-astro-cid-pux6a34n>LinkedIn</a> </div> </div> </div>   <main id="main-content">  <header class="hero"> <div class="hero-bg"></div> <div class="hero-content"> <h1>We craft brands that <span class="text-serif text-accent">resonate</span> in a noisy world.</h1> <p>A strategic branding and communication studio building the future of identity.</p> </div> </header> <section class="container manifesto"> <div class="descriptor"> <span>The Philosophy</span> <h2>Good design is good business. Great design is <span class="text-serif">timeless</span>.</h2> </div> <div class="stats-grid"> <div class="stat"> <h3>50+</h3> <p>Brands Launched</p> </div> <div class="stat"> <h3>03</h3> <p>Global Awards</p> </div> <div class="stat"> <h3>10y</h3> <p>Of Experience</p> </div> <div class="stat"> <h3>24/7</h3> <p>Creative Mode</p> </div> </div> </section> <section class="container work-showcase"> <h2>Selected Works</h2> <div class="project-list"> <article class="project"> <div class="project-img"> <img src="/assets/work1.png" alt="Aesop Skincare Branding"> </div> <div class="project-info"> <span class="project-category">Packaging & Identity</span> <h3 class="project-title">Lumeura Skincare</h3> <p>Redefining luxury through minimalist packaging and tactile surfaces. A comprehensive rebrand for a heritage skincare line.</p> <br> <a href="/work" class="project-link">View Case Study</a> </div> </article> <article class="project"> <div class="project-img"> <img src="/assets/work2.png" alt="Fintech App Interface"> </div> <div class="project-info"> <span class="project-category">Digital Product</span> <h3 class="project-title">Nova Finance</h3> <p>Simplifying complex financial data into a clean, Swiss-inspired interface. user experience design for the next generation of banking.</p> <br> <a href="/work" class="project-link">View Case Study</a> </div> </article> <article class="project"> <div class="project-img"> <img src="/assets/work1.png" alt="Corporate Branding"> </div> <div class="project-info"> <span class="project-category">Corporate Identity</span> <h3 class="project-title">Apex Architecture</h3> <p>Constructing a visual language for a leading firm. Bold geometry meets classic typography.</p> <br> <a href="/work" class="project-link">View Case Study</a> </div> </article> </div> </section> <section class="container services-list"> <div class="descriptor" style="margin-bottom: 3rem;"> <span>Expertise</span> </div> <div class="service-item"> <span class="service-num">01</span> <h3 class="service-name">Brand Strategy</h3> <p class="service-desc">Defining the core truth of your business.</p> </div> <div class="service-item"> <span class="service-num">02</span> <h3 class="service-name">Visual Identity</h3> <p class="service-desc">Logos, typography, color, and art direction.</p> </div> <div class="service-item"> <span class="service-num">03</span> <h3 class="service-name">Digital Design</h3> <p class="service-desc">Websites, apps, and digital experiences.</p> </div> <div class="service-item"> <span class="service-num">04</span> <h3 class="service-name">Communication</h3> <p class="service-desc">Copywriting, campaigns, and social media.</p> </div> </section>  </main> <footer class="footer" data-astro-cid-sz7xmlte> <div class="container" data-astro-cid-sz7xmlte> <div class="footer-cta" data-astro-cid-sz7xmlte> <h2 data-astro-cid-sz7xmlte>Let's build something <span class="text-serif" data-astro-cid-sz7xmlte>iconic</span>.</h2> <a href="/contact" class="btn-primary" data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte>Get in Touch</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-sz7xmlte> <path d="M5 12h14M12 5l7 7-7 7" data-astro-cid-sz7xmlte></path> </svg> </a> </div> <div class="footer-grid" data-astro-cid-sz7xmlte> <div class="footer-brand" data-astro-cid-sz7xmlte> <!-- Full logo in footer --> <svg class="footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1181.81 548.94" aria-label="SOAL Creations" data-astro-cid-sz7xmlte> <g class="logo-main" fill="currentColor" data-astro-cid-sz7xmlte> <path d="M168.1,367.08c-16.3,0-31.9-1.71-46.77-5.13-14.89-3.42-28.04-8.76-39.49-16.01-11.44-7.25-20.46-16.28-27.03-27.09-6.59-10.8-9.87-23.6-9.87-38.38,0-1.64.07-3.28.21-4.92.14-1.65.21-2.87.21-3.7h56.22c0,.55-.07,1.58-.21,3.08-.15,1.5-.21,2.81-.21,3.9,0,9.03,2.71,16.76,8.16,23.19,5.43,6.43,13.3,11.36,23.6,14.78,10.3,3.42,22.45,5.13,36.48,5.13,9.44,0,10.53-.55,17.82-1.65,7.3-1.09,13.58-2.66,18.88-4.72,5.29-2.05,9.66-4.51,13.09-7.39,3.43-2.87,5.93-6.09,7.5-9.65,1.57-3.55,2.37-7.39,2.37-11.49,0-7.93-2.58-14.5-7.73-19.7-5.15-5.19-12.09-9.58-20.81-13.13-8.73-3.55-18.6-6.77-29.61-9.64-11.02-2.87-22.32-5.81-33.9-8.82-11.59-3.01-22.89-6.63-33.9-10.88-11.02-4.24-20.89-9.37-29.61-15.39-8.73-6.01-15.67-13.61-20.82-22.78-5.15-9.17-7.72-20.17-7.72-33.04s2.93-24.63,8.8-34.48c5.86-9.85,14.16-17.99,24.89-24.42,10.73-6.43,23.24-11.22,37.55-14.37,14.31-3.14,29.89-4.72,46.78-4.72,15.73,0,30.54,1.58,44.42,4.72,13.87,3.14,26.1,8.07,36.69,14.77,10.59,6.71,18.88,15.19,24.89,25.45,6.01,10.27,9.01,22.51,9.01,36.73v4.93h-55.36v-4.11c0-7.93-2.51-14.63-7.51-20.11-5.01-5.47-12.02-9.71-21.03-12.72-9.01-3.01-19.52-4.51-31.54-4.51-12.87,0-23.89,1.17-33.05,3.48-9.16,2.33-16.17,5.75-21.03,10.27-4.87,4.51-7.29,10.06-7.29,16.62s2.57,12.58,7.72,17.23c5.15,4.66,12.08,8.62,20.81,11.91,8.72,3.28,18.59,6.3,29.61,9.03,11.01,2.74,22.32,5.68,33.9,8.83,11.59,3.14,22.89,6.77,33.9,10.88,11.01,4.1,20.88,9.23,29.61,15.39,8.72,6.15,15.67,13.75,20.82,22.78,5.15,9.03,7.72,19.85,7.72,32.43,0,21.07-5.36,38.04-16.09,50.9-10.73,12.86-25.47,22.16-44.21,27.91-18.74,5.75-32.84,8.62-56.88,8.62Z" data-astro-cid-sz7xmlte></path> <path d="M454.98,367.08c-30.62,0-57.08-5.27-79.39-15.8-22.32-10.53-39.42-26.61-51.28-48.22-11.87-21.62-17.81-48.84-17.81-81.68s5.93-60.4,17.81-81.89c11.87-21.48,28.97-37.48,51.28-48.02,22.31-10.53,48.78-15.8,79.39-15.8s48.88,5.27,71.05,15.8c22.17,10.54,39.2,26.54,51.07,48.02,11.87,21.49,17.81,48.78,17.81,81.89s-5.94,60.06-17.81,81.68c-11.87,21.62-28.9,37.69-51.07,48.22-22.18,10.54-40.15,15.8-71.05,15.8ZM454.98,321.93c14.87,0,19.41-2.05,30.72-6.16,11.3-4.11,20.81-10.19,28.53-18.26,7.73-8.07,13.59-18.06,17.6-29.96,4-11.9,6.01-25.65,6.01-41.25v-9.03c0-15.86-2-29.82-6.01-41.86-4.01-12.04-9.87-22.09-17.6-30.17-7.72-8.07-17.24-14.16-28.53-18.26-11.31-4.11-15.84-6.15-30.72-6.15s-27.97,2.05-39.27,6.15c-11.31,4.11-20.82,10.2-28.54,18.26-7.72,8.08-13.52,18.13-17.38,30.17-3.86,12.04-5.79,26-5.79,41.86v9.03c0,15.6,1.93,29.35,5.79,41.25,3.86,11.91,9.66,21.89,17.38,29.96s17.23,14.16,28.54,18.26c11.3,4.11,24.39,6.16,39.27,6.16Z" data-astro-cid-sz7xmlte></path> <path d="M910.33,362.15V80.6h55.79v229.87h159.75v51.68h-215.54Z" data-astro-cid-sz7xmlte></path> <path d="M887.88,80.6h-60.51l-23.6,59.92h-134.75l-23.6-59.92h-57.51l114.58,281.56h70.38l115.01-281.56ZM689,191.84h94.34l-27.21,70.16c-1.15,2.73-2.51,6.22-4.07,10.46-1.58,4.24-3.22,8.89-4.94,13.95-1.72,5.06-3.43,10.19-5.15,15.4-1.72,5.19-3.29,9.85-4.73,13.95h-2.15c-1.72-5.47-3.79-11.77-6.22-18.88-2.43-7.12-4.79-13.82-7.08-20.11-2.29-6.3-4.15-11.22-5.58-14.77l-27.21-70.16Z" data-astro-cid-sz7xmlte></path> </g> <g class="logo-subtext" fill="currentColor" opacity="0.6" data-astro-cid-sz7xmlte> <path d="M84.18,485.05c-8.25,0-15.3-1.45-21.15-4.36-5.86-2.9-10.33-7.44-13.43-13.61-3.11-6.16-4.65-14.12-4.65-23.86,0-14.22,3.45-24.74,10.37-31.58,6.91-6.83,16.54-10.25,28.87-10.25,6.67,0,12.7,1.14,18.09,3.42,5.38,2.28,9.66,5.71,12.84,10.31,3.18,4.6,4.77,10.43,4.77,17.5h-15.67c0-3.93-.85-7.25-2.53-9.96-1.69-2.71-4.03-4.77-7.01-6.19-2.99-1.41-6.41-2.12-10.25-2.12-5.35,0-9.78,1.04-13.31,3.12-3.53,2.08-6.15,5.16-7.84,9.25-1.69,4.08-2.53,9.15-2.53,15.2v2.59c0,6.13.85,11.24,2.53,15.32,1.69,4.09,4.28,7.15,7.78,9.19,3.5,2.04,7.96,3.07,13.38,3.07,4.08,0,7.66-.69,10.72-2.06,3.06-1.37,5.44-3.42,7.13-6.13,1.69-2.71,2.53-6.03,2.53-9.96h15.08c0,7.07-1.57,12.91-4.71,17.5-3.14,4.6-7.4,8.01-12.78,10.25-5.39,2.24-11.45,3.36-18.21,3.36Z" data-astro-cid-sz7xmlte></path> <path d="M170.67,485.05c-8.41,0-15.67-1.51-21.8-4.54-6.12-3.02-10.82-7.64-14.08-13.84-3.26-6.21-4.89-14.03-4.89-23.45s1.62-17.34,4.89-23.51c3.26-6.17,7.96-10.76,14.08-13.79,6.13-3.03,13.39-4.54,21.8-4.54s15.77,1.51,21.86,4.54c6.09,3.02,10.76,7.62,14.03,13.79,3.26,6.17,4.89,14,4.89,23.51s-1.63,17.25-4.89,23.45c-3.26,6.2-7.94,10.82-14.03,13.84-6.09,3.03-13.37,4.54-21.86,4.54ZM170.67,472.08c4.08,0,7.68-.59,10.78-1.77,3.11-1.18,5.71-2.93,7.84-5.25,2.12-2.31,3.73-5.18,4.83-8.6,1.1-3.42,1.65-7.36,1.65-11.84v-2.59c0-4.56-.55-8.56-1.65-12.02-1.1-3.46-2.71-6.35-4.83-8.66-2.12-2.32-4.73-4.07-7.84-5.24-3.1-1.18-6.7-1.77-10.78-1.77s-7.68.59-10.78,1.77c-3.1,1.18-5.71,2.93-7.83,5.24-2.12,2.32-3.72,5.2-4.78,8.66-1.06,3.46-1.59,7.46-1.59,12.02v2.59c0,4.48.53,8.42,1.59,11.84,1.06,3.42,2.65,6.29,4.78,8.6,2.12,2.32,4.73,4.07,7.83,5.25,3.1,1.18,6.7,1.77,10.78,1.77Z" data-astro-cid-sz7xmlte></path> <path d="M225.7,483.63v-80.84h15.31v67.52h40.54v13.31h-55.86Z" data-astro-cid-sz7xmlte></path> <path d="M292.86,483.63v-80.84h15.31v67.52h40.54v13.31h-55.86Z" data-astro-cid-sz7xmlte></path> <path d="M351.67,483.63l31.46-80.84h19.32l31.58,80.84h-16.62l-6.48-17.21h-37l-6.48,17.21h-15.79ZM378.77,453.46h27.22l-8.13-21.92c-.32-.79-.69-1.79-1.12-3-.44-1.22-.89-2.56-1.36-4.01-.47-1.45-.94-2.93-1.41-4.42-.47-1.49-.9-2.83-1.3-4h-.59c-.47,1.57-1.04,3.38-1.71,5.42-.66,2.04-1.31,3.97-1.94,5.78-.63,1.81-1.14,3.22-1.53,4.24l-8.13,21.92Z" data-astro-cid-sz7xmlte></path> <path d="M443.58,483.63v-80.84h44.07c4.32,0,8.19.82,11.61,2.48,3.42,1.65,6.11,3.96,8.08,6.95,1.96,2.99,2.94,6.48,2.94,10.49,0,3.06-.59,5.85-1.77,8.37-1.18,2.51-2.77,4.61-4.77,6.3-2.01,1.69-4.27,2.97-6.78,3.83v.47c2.98.62,5.66,1.82,8.02,3.59,2.36,1.77,4.2,4.01,5.54,6.72,1.33,2.71,2,5.83,2,9.37,0,5.03-1.12,9.19-3.36,12.49-2.24,3.3-5.23,5.75-8.96,7.36-3.73,1.61-7.91,2.42-12.55,2.42h-44.07ZM458.9,435.79h24.75c2.36,0,4.34-.43,5.95-1.3,1.61-.86,2.83-2.04,3.66-3.53.82-1.49,1.23-3.14,1.23-4.95,0-3.46-.92-6.01-2.77-7.66-1.85-1.65-4.27-2.47-7.25-2.47h-25.57v19.91ZM458.9,470.55h26.75c3.22,0,5.87-.89,7.96-2.65,2.08-1.77,3.12-4.53,3.12-8.3,0-2.2-.43-4.12-1.3-5.78-.86-1.65-2.18-2.93-3.95-3.83-1.77-.9-4.03-1.35-6.77-1.35h-25.81v21.92Z" data-astro-cid-sz7xmlte></path> <path d="M563.89,485.05c-8.41,0-15.67-1.51-21.8-4.54-6.12-3.02-10.82-7.64-14.08-13.84-3.26-6.21-4.89-14.03-4.89-23.45s1.62-17.34,4.89-23.51c3.26-6.17,7.96-10.76,14.08-13.79,6.13-3.03,13.39-4.54,21.8-4.54s15.77,1.51,21.86,4.54c6.09,3.02,10.76,7.62,14.03,13.79,3.26,6.17,4.89,14,4.89,23.51s-1.63,17.25-4.89,23.45c-3.26,6.2-7.94,10.82-14.03,13.84-6.09,3.03-13.37,4.54-21.86,4.54ZM563.89,472.08c4.08,0,7.68-.59,10.78-1.77,3.11-1.18,5.71-2.93,7.84-5.25,2.12-2.31,3.73-5.18,4.83-8.6,1.1-3.42,1.65-7.36,1.65-11.84v-2.59c0-4.56-.55-8.56-1.65-12.02-1.1-3.46-2.71-6.35-4.83-8.66-2.12-2.32-4.73-4.07-7.84-5.24-3.1-1.18-6.7-1.77-10.78-1.77s-7.68.59-10.78,1.77c-3.1,1.18-5.71,2.93-7.83,5.24-2.12,2.32-3.72,5.2-4.78,8.66-1.06,3.46-1.59,7.46-1.59,12.02v2.59c0,4.48.53,8.42,1.59,11.84,1.06,3.42,2.65,6.29,4.78,8.6,2.12,2.32,4.73,4.07,7.83,5.25,3.1,1.18,6.7,1.77,10.78,1.77Z" data-astro-cid-sz7xmlte></path> <path d="M618.93,483.63v-80.84h42.54c5.97,0,10.92,1.02,14.85,3.06,3.93,2.04,6.87,4.95,8.84,8.72,1.97,3.77,2.95,8.21,2.95,13.31s-1.18,9.92-3.54,13.97c-2.35,4.04-5.81,7.09-10.37,9.13l16.73,32.65h-16.73l-14.85-30.05h-25.1v30.05h-15.31ZM634.24,440.74h26.04c3.93,0,6.95-1.14,9.07-3.42,2.12-2.28,3.18-5.42,3.18-9.43,0-2.59-.47-4.77-1.41-6.54-.94-1.77-2.32-3.12-4.13-4.07-1.81-.94-4.04-1.41-6.71-1.41h-26.04v24.86Z" data-astro-cid-sz7xmlte></path> <path d="M695.05,483.63l31.46-80.84h19.32l31.58,80.84h-16.62l-6.48-17.21h-37l-6.48,17.21h-15.79ZM722.15,453.46h27.22l-8.13-21.92c-.32-.79-.69-1.79-1.12-3-.44-1.22-.89-2.56-1.36-4.01-.47-1.45-.94-2.93-1.41-4.42-.47-1.49-.9-2.83-1.3-4h-.59c-.47,1.57-1.04,3.38-1.71,5.42-.66,2.04-1.31,3.97-1.94,5.78-.63,1.81-1.14,3.22-1.53,4.24l-8.13,21.92Z" data-astro-cid-sz7xmlte></path> <path d="M796.74,483.63v-67.64h-25.81v-13.2h67.05v13.2h-25.92v67.64h-15.32Z" data-astro-cid-sz7xmlte></path> <path d="M849.89,483.63v-80.84h15.31v80.84h-15.31Z" data-astro-cid-sz7xmlte></path> <path d="M920.24,485.05c-8.41,0-15.67-1.51-21.8-4.54-6.12-3.02-10.82-7.64-14.08-13.84-3.26-6.21-4.89-14.03-4.89-23.45s1.62-17.34,4.89-23.51c3.26-6.17,7.96-10.76,14.08-13.79,6.13-3.03,13.39-4.54,21.8-4.54s15.77,1.51,21.86,4.54c6.09,3.02,10.76,7.62,14.03,13.79,3.26,6.17,4.89,14,4.89,23.51s-1.63,17.25-4.89,23.45c-3.26,6.2-7.94,10.82-14.03,13.84-6.09,3.03-13.37,4.54-21.86,4.54ZM920.24,472.08c4.08,0,7.68-.59,10.78-1.77,3.11-1.18,5.71-2.93,7.84-5.25,2.12-2.31,3.73-5.18,4.83-8.6,1.1-3.42,1.65-7.36,1.65-11.84v-2.59c0-4.56-.55-8.56-1.65-12.02-1.1-3.46-2.71-6.35-4.83-8.66-2.12-2.32-4.73-4.07-7.84-5.24-3.1-1.18-6.7-1.77-10.78-1.77s-7.68.59-10.78,1.77c-3.1,1.18-5.71,2.93-7.83,5.24-2.12,2.32-3.72,5.2-4.78,8.66-1.06,3.46-1.59,7.46-1.59,12.02v2.59c0,4.48.53,8.42,1.59,11.84,1.06,3.42,2.65,6.29,4.78,8.6,2.12,2.32,4.73,4.07,7.83,5.25,3.1,1.18,6.7,1.77,10.78,1.77Z" data-astro-cid-sz7xmlte></path> <path d="M975.28,483.63v-80.84h14.61l34.53,47.72c.39.47.86,1.12,1.41,1.95.55.82,1.06,1.63,1.53,2.41.47.78.78,1.41.94,1.89h.59v-53.97h14.74v80.84h-14.5l-34.65-48.08c-.63-.94-1.36-2.1-2.18-3.48-.82-1.37-1.39-2.33-1.71-2.89h-.59v54.44h-14.73Z" data-astro-cid-sz7xmlte></path> <path d="M1091.7,485.05c-4.48,0-8.76-.49-12.84-1.48-4.08-.98-7.7-2.51-10.84-4.6-3.15-2.08-5.62-4.67-7.42-7.78-1.81-3.1-2.71-6.78-2.71-11.01,0-.47.02-.94.06-1.41s.06-.83.06-1.06h15.44c0,.16-.02.45-.06.88-.04.44-.06.81-.06,1.12,0,2.59.74,4.81,2.24,6.66,1.49,1.85,3.65,3.26,6.48,4.24,2.83.99,6.17,1.48,10.01,1.48,2.6,0,4.89-.16,6.9-.47,2.01-.31,3.73-.77,5.19-1.36,1.45-.59,2.65-1.3,3.6-2.12.94-.82,1.62-1.75,2.06-2.77.43-1.02.65-2.12.65-3.3,0-2.27-.71-4.16-2.12-5.65-1.41-1.49-3.32-2.75-5.71-3.77-2.4-1.02-5.11-1.94-8.13-2.77-3.03-.82-6.13-1.66-9.31-2.53-3.18-.86-6.29-1.9-9.31-3.12-3.02-1.22-5.74-2.69-8.13-4.42-2.4-1.73-4.3-3.91-5.71-6.54-1.41-2.63-2.12-5.79-2.12-9.49s.81-7.07,2.41-9.9c1.61-2.83,3.89-5.16,6.84-7.01,2.94-1.85,6.38-3.22,10.31-4.13,3.93-.9,8.21-1.35,12.84-1.35,4.32,0,8.38.45,12.2,1.35,3.81.91,7.17,2.32,10.08,4.24,2.9,1.93,5.18,4.36,6.83,7.31,1.65,2.95,2.48,6.46,2.48,10.55v1.41h-15.21v-1.18c0-2.28-.69-4.2-2.06-5.78-1.37-1.57-3.29-2.79-5.77-3.65-2.48-.86-5.36-1.3-8.66-1.3-3.53,0-6.56.34-9.07,1-2.52.67-4.44,1.65-5.78,2.95-1.33,1.3-2,2.89-2,4.77s.7,3.61,2.12,4.95c1.41,1.34,3.32,2.48,5.71,3.42,2.4.94,5.11,1.81,8.13,2.59,3.02.79,6.12,1.63,9.3,2.53,3.19.9,6.29,1.95,9.31,3.12,3.03,1.18,5.74,2.65,8.13,4.42,2.39,1.77,4.3,3.95,5.71,6.54,1.41,2.6,2.12,5.7,2.12,9.31,0,6.05-1.47,10.92-4.42,14.61-2.94,3.7-6.99,6.37-12.13,8.02-5.15,1.65-11.02,2.48-17.62,2.48Z" data-astro-cid-sz7xmlte></path> </g> </svg> <p data-astro-cid-sz7xmlte>Strategic branding & communication studio building the future of identity.</p> </div> <div class="footer-links" data-astro-cid-sz7xmlte> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>Navigate</h4> <ul data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte><a href="/" data-astro-cid-sz7xmlte>Index</a></li> <li data-astro-cid-sz7xmlte><a href="/work" data-astro-cid-sz7xmlte>Selected Work</a></li> <li data-astro-cid-sz7xmlte><a href="/services" data-astro-cid-sz7xmlte>Expertise</a></li> <li data-astro-cid-sz7xmlte><a href="/about" data-astro-cid-sz7xmlte>Studio</a></li> <li data-astro-cid-sz7xmlte><a href="/contact" data-astro-cid-sz7xmlte>Contact</a></li> </ul> </div> <div class="footer-col" data-astro-cid-sz7xmlte> <h4 data-astro-cid-sz7xmlte>Connect</h4> <ul data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte><a href="mailto:hello@soalcreations.com" data-astro-cid-sz7xmlte>hello@soalcreations.com</a></li> <li data-astro-cid-sz7xmlte><a href="#" target="_blank" rel="noopener" data-astro-cid-sz7xmlte>Instagram</a></li> <li data-astro-cid-sz7xmlte><a href="#" target="_blank" rel="noopener" data-astro-cid-sz7xmlte>LinkedIn</a></li> <li data-astro-cid-sz7xmlte><a href="#" target="_blank" rel="noopener" data-astro-cid-sz7xmlte>Twitter</a></li> </ul> </div> </div> </div> <div class="footer-bottom" data-astro-cid-sz7xmlte> <span data-astro-cid-sz7xmlte>&copy; 2025 SOAL Creations. All rights reserved.</span> <div class="footer-legal" data-astro-cid-sz7xmlte> <a href="#" data-astro-cid-sz7xmlte>Privacy Policy</a> <a href="#" data-astro-cid-sz7xmlte>Terms of Service</a> </div> </div> </div> </footer>  <script>
+    // Global Animations & Interactions
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <main>
-        <section id="hero" class="hero-section">
-            <canvas id="hero-canvas" aria-hidden="true"></canvas>
-            <div class="hero-content">
-                <object id="hero-logo" class="hero-logo" type="image/svg+xml" data="assets/logo.svg" role="img" aria-label="SOAL Collaborations Logo"></object>
-                <h1>Creative Solutions for Visionary Entrepreneurs</h1>
-                <p>We bring fresh perspectives to solve business challenges through innovative digital and print experiences that connect with your audience and drive growth.</p>
-                <a href="work.html" class="cta-button" role="button">Explore Our Approach</a>
-            </div>
-        </section>
+        if (prefersReducedMotion) return;
 
-        <section id="features" class="features-section">
-            <div class="container">
-                <h2>Our Creative Approach</h2>
-                <div class="feature reveal">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-git-pull-request" id="clarity-icon">
-                            <circle id="clarity-circle-1" cx="18" cy="18" r="3"></circle>
-                            <circle id="clarity-circle-2" cx="6" cy="6" r="3"></circle>
-                            <path id="clarity-path" d="M13 6h3a2 2 0 0 1 2 2v7"></path>
-                            <line id="clarity-line" x1="6" y1="9" x2="6" y2="21"></line>
-                        </svg>
-                    </div>
-<h3>Entrepreneur-First Thinking</h3>
-<p>We start with your vision, then craft unconventional solutions that challenge industry norms and create competitive advantages.</p>
-                </div>
-                <div class="feature reveal">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers" id="creativity-icon">
-                            <polygon id="creativity-polygon" points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                            <polyline id="creativity-polyline-1" points="2 17 12 22 22 17"></polyline>
-                            <polyline id="creativity-polyline-2" points="2 12 12 17 22 12"></polyline>
-                        </svg>
-                    </div>
-<h3>Multi-Channel Impact</h3>
-<p>We design cohesive experiences across digital and print media that reinforce your message and maximize audience connection.</p>
-                </div>
-                <div class="feature reveal">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" id="partner-icon">
-                            <path id="partner-path-1" d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle id="partner-circle" cx="9" cy="7" r="4"></circle>
-                            <path id="partner-path-2" d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path id="partner-path-3" d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
-                    </div>
-<h3>Problem-Solving Partnership</h3>
-<p>We're your thought partners in overcoming obstacles - bringing fresh eyes to stubborn challenges to unlock new opportunities.</p>
-                </div>
-            </div>
-        </section>
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
 
-        <section id="who-we-help" class="who-we-help-section">
-            <div class="container">
-                <h2>Who We Help</h2>
-                <div class="personas-grid">
-                    <div class="persona-card">
-                        <div class="persona-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rocket"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-                        </div>
-<h3>The Visionary Founder</h3>
-<p>You're building something new and need creative solutions to stand out. We'll help translate your vision into compelling brand experiences across all touchpoints.</p>
-                    </div>
-                    <div class="persona-card">
-                        <div class="persona-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                        </div>
-<h3>The Scaling Business</h3>
-<p>You've found product-market fit but need creative systems to scale. We design integrated solutions that work across digital and physical channels to accelerate growth.</p>
-                    </div>
-                    <div class="persona-card">
-                        <div class="persona-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                        </div>
-<h3>The Mission-Driven Organization</h3>
-<p>You're changing the world but struggle to cut through the noise. We create memorable campaigns that resonate emotionally and inspire action.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            // Smooth reveal animations for content elements
+            const revealElements = document.querySelectorAll(
+                '.manifesto h2, .stat, .project, .service-item, .descriptor'
+            );
 
-        <section id="why-choose-us" class="why-choose-us-section">
-            <div class="container">
-                <h2>Why Choose Us?</h2>
-                <div class="reasons-grid">
-                    <div class="reason-card">
-                        <h3>We're Your Partner in Growth</h3>
-                        <p>We're more than just a service provider; we're an extension of your team. We're invested in your success and committed to helping you achieve your goals.</p>
-                    </div>
-                    <div class="reason-card">
-                        <h3>We're Obsessed with Results</h3>
-                        <p>We're not just about creating beautiful things; we're about delivering tangible results. We use data to inform our decisions and measure our success.</p>
-                    </div>
-                    <div class="reason-card">
-                        <h3>We Believe in a Clear Process</h3>
-                        <p>We're not about smoke and mirrors; we're about transparency and collaboration. We'll work with you every step of the way to ensure we're on the right track.</p>
-                    </div>
-                </div>
-                <div id="why-choose-us-animation"></div>
-            </div>
-        </section>
+            revealElements.forEach((el, index) => {
+                gsap.from(el, {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
 
-        <section id="process" class="process-section">
-            <div class="container">
-                <h2>Your Journey with Us</h2>
-                <div class="process-step">
-                    <div class="process-step-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    </div>
-                    <div class="process-step-content">
-<h3>Perspective Session (1 Week)</h3>
-<p>We immerse in your world through founder interviews and stakeholder workshops to identify unseen opportunities.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-step-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
-                    </div>
-                    <div class="process-step-content">
-<h3>Creative Solutioning (2-4 Weeks)</h3>
-<p>We develop integrated concepts across digital and print media, rapidly prototyping to validate effectiveness.</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-step-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trending-up"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                    </div>
-                    <div class="process-step-content">
-<h3>Impact Amplification (Ongoing)</h3>
-<p>We measure and refine campaign performance across channels to maximize reach and engagement.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+            // Parallax effect for hero background
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                gsap.to(heroBg, {
+                    yPercent: 30,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.hero',
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                });
+            }
 
-    <footer>
-        <div class="container">
-            <h2>Ready to Start Your Journey?</h2>
-            <p>Let's collaborate to build something amazing. Contact us today to get started.</p>
-            <a href="contact.html" class="cta-button">Get in Touch</a>
-            <div class="social-links">
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/soalcollaborations" class="social-link" target="_blank" aria-label="Instagram">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/company/so%C9%90l-collaborations/" class="social-link" target="_blank" aria-label="LinkedIn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    </a>
-                    <a href="https://wa.me/917034498101" class="social-link" target="_blank" aria-label="WhatsApp">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.52.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                    </a>
-                </div>
-            </div>
-            <p>&copy; 2025 SOAL Collaborations. All Rights Reserved.</p>
-        </div>
-    </footer>
+            // Project image reveal
+            const projectImages = document.querySelectorAll('.project-img');
+            projectImages.forEach(img => {
+                gsap.from(img, {
+                    scale: 1.1,
+                    opacity: 0.5,
+                    duration: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: img,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
 
-</body>
-</html>
+            // Staggered service items
+            const serviceItems = document.querySelectorAll('.service-item');
+            if (serviceItems.length > 0) {
+                gsap.from(serviceItems, {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: serviceItems[0],
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            }
+
+            // Stats counter animation
+            const stats = document.querySelectorAll('.stat h3');
+            stats.forEach(stat => {
+                const text = stat.textContent;
+                const hasNumber = /\d+/.test(text);
+
+                if (hasNumber) {
+                    const number = parseInt(text.match(/\d+/)[0]);
+                    const suffix = text.replace(/\d+/, '');
+
+                    gsap.from(stat, {
+                        textContent: 0,
+                        duration: 2,
+                        ease: 'power2.out',
+                        snap: { textContent: 1 },
+                        scrollTrigger: {
+                            trigger: stat,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        },
+                        onUpdate: function() {
+                            stat.textContent = Math.round(this.targets()[0].textContent) + suffix;
+                        }
+                    });
+                }
+            });
+        }
+
+        // Smooth cursor follower (optional enhancement)
+        const cursor = document.createElement('div');
+        cursor.className = 'custom-cursor';
+        cursor.innerHTML = '<div class="cursor-dot"></div>';
+
+        // Only add custom cursor on non-touch devices with large screens
+        if (window.matchMedia('(pointer: fine) and (min-width: 1024px)').matches) {
+            document.body.appendChild(cursor);
+
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.15;
+                cursorY += (mouseY - cursorY) * 0.15;
+                cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            // Cursor interactions
+            const interactiveElements = document.querySelectorAll('a, button, .project');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+            });
+        }
+    });
+</script> </body></html>
